@@ -10,7 +10,7 @@ Funcionalidades privadas: al registrarse o iniciar sesión, podrá realizar una 
 
 Entidades:
 
-Usuario: es el cliente que se registra para realizar una compra y valora los productos.
+Usuario: es el cliente que se registra para realizar una compra y valora los productos.\n
 Producto: elemento disponible para compra
 Videojuego: producto concreto del que se puede elegir su formato (físico o digital)
 Consola: producto concreto del que se puede elegir el color.

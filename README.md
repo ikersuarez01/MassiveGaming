@@ -12,8 +12,7 @@ Entidades:
 
 Usuario: es el cliente que se registra para realizar una compra y valora los productos.
 
-Producto: elemento disponible para compra.
-Videojuego: producto concreto del que se puede elegir su formato (físico o digital)
+Producto: elemento disponible para compra.Videojuego: producto concreto del que se puede elegir su formato (físico o digital)
 Consola: producto concreto del que se puede elegir el color.
 Compra: transacción que almacena la fecha, el producto, la cantidad, el precio y el usuario. Se trata de una entidad débil.
 Valoración: es la opinión que se hace de cualquier usuario de un producto. Solo un usuario que haya realizado una compra de este producto puede realizar una valoración sobre el mismo.

@@ -2,6 +2,8 @@
 
 Nombre de la aplicación web : Massive Gaming
 
+<h1>FASE 1<h1/>
+
 Descripción aplicación: se trata de una una plataforma de venta online de videojuegos y consolas.
 
 Funcionalidades públicas: sin registrarse se puede acceder al catálogo y ver las valoraciones.

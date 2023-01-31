@@ -18,6 +18,8 @@ Entidades:
 <li>Consola: producto concreto del que se puede elegir el color.
 <li>Compra: transacción que almacena la fecha, el producto, la cantidad, el precio y el usuario. Se trata de una entidad débil.
 <li>Valoración: es la opinión que se hace de cualquier usuario de un producto. Solo un usuario que haya realizado una compra de este producto puede realizar una valoración sobre el mismo.
+<li>Carrito: contiene ítems de la compra.
+<li>Ítem: referencia a producto.
 
 Funcionalidades servicio interno:
 

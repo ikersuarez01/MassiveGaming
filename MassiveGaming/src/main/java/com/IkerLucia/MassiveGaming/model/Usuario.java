@@ -11,7 +11,7 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	private String correo;
-	private String password;
+	private String clave;
 	
 	
 	//Constructors
@@ -22,7 +22,7 @@ public class Usuario {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
-		this.password = password;
+		this.clave = password;
 	}
 	
 	public long getId () {
@@ -48,10 +48,10 @@ public class Usuario {
 		correo = nuevoCorreo;
 	}
 	public String getPassword() {
-		return password;
+		return clave;
 	}
 	public void setPassword(String nuevaPassword) {
-		password = nuevaPassword;
+		clave = nuevaPassword;
 	}
 	
 }

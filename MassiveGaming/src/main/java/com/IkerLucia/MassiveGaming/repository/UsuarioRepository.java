@@ -9,4 +9,5 @@ import com.IkerLucia.MassiveGaming.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	 List<Usuario> findByNombre(String nombre);
 	 List<Usuario> findByApellido(String apellido);
+	 List<Usuario> findByCorreo(String correo);
 }

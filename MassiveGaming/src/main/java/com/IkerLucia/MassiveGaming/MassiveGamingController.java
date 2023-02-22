@@ -23,7 +23,9 @@ public class MassiveGamingController {
 	@Autowired
 	private UsuarioRepository usuarios;
 	@Autowired
-	private ProductoRepository productos;
+	private VideojuegoRepository videojuegos;
+	@Autowired
+	private ConsolaRepository consolas;
 	@Autowired
 	private CompraRepository compras;
 	@Autowired
@@ -36,15 +38,19 @@ public class MassiveGamingController {
 	public void init() {
 		usuarios.save(new Usuario("Lucia", "Molinero", "lucia@gmail.com", "1234"));
 		usuarios.save(new Usuario("Iker", "Suarez", "iker@gmail.com", "1234"));
-		productos.save(new Producto("Cult of the lamb", 22.99));
-        productos.save(new Producto("The last of Us", 35.9));
-        productos.save(new Producto("Mario Kart 8 Deluxe", 68.9));
-        productos.save(new Producto("Minecraft", 30.0));
-        productos.save(new Producto("Star Wars Jedi: Survivor", 55.9));
-        productos.save(new Producto("Resident Evil 4", 19.9));
-        productos.save(new Producto("Street Fighter 3", 49.9));
 		
-		List<Producto> prod = productos.findByNombre("Cult of the lamb");
+		videojuegos.save(new Videojuego("Cult of the lamb", 22.99, true));
+		videojuegos.save(new Videojuego("The last of Us", 35.9, false));
+		videojuegos.save(new Videojuego("Mario Kart 8 Deluxe", 68.9, false));
+		videojuegos.save(new Videojuego("Minecraft", 30.0, true));
+		videojuegos.save(new Videojuego("Star Wars Jedi: Survivor", 55.9, true));
+		videojuegos.save(new Videojuego("Resident Evil 4", 19.9, false));
+		videojuegos.save(new Videojuego("Street Fighter 3", 49.9, true));
+		
+		consolas.save(new Consola("Nintendo Switch", 359.99, "Rojo-Azul"));
+
+		
+		List<Videojuego> prod = videojuegos.findByNombre("Cult of the lamb");
 		
 		items.save(new Item(prod.get(0), 1));
 		
@@ -56,7 +62,7 @@ public class MassiveGamingController {
 	
 	@GetMapping("/MassiveGaming")
 	public String home(Model model) {
-		List<Producto> prod = productos.findAll();
+		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
 		return "index";
 	}
@@ -74,14 +80,14 @@ public class MassiveGamingController {
 	
 	@GetMapping("/videojuegos")
 	public String videojuegos(Model model) {
-		List<Producto> prod = productos.findAll();
+		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
 		return "videojuegos";
 	}
 	
 	@GetMapping("/consolas")
 	public String consolas(Model model) {
-		List<Producto> prod = productos.findAll();
+		List<Consola> prod = consolas.findAll();
         model.addAttribute("productos",prod);
 		return "consolas";
 	}

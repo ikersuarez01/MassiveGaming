@@ -22,16 +22,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <img src="/img/logoMassiveGaming.png" style="height: 128px; width: 128px; margin-right: 22px" />
-                <a class="navbar-brand fs-4" href="#page-top">Massive Gaming</a>
+                <a href="MassiveGaming"><img src="/img/logoMassiveGaming.png" style="height: 128px; width: 128px; margin-right: 22px" /></a>
+                <a class="navbar-brand fs-4" href="MassiveGaming">Massive Gaming</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link fs-5" href="#services">Videojuegos</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="#about">Consolas</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="#spaceOddity">Iniciar Sesion</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="videojuegos">Videojuegos</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="consolas">Consolas</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="crearCuenta">Iniciar Sesion</a></li>
                         <li class="nav-item"><a class="nav-link fs-5" href="#spaceOddity">Carrito</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="#contact">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -61,6 +61,9 @@
                         <p class="fs-5" align="center">Explora los juegos más vendidos</p>
                         <p><br></p>
                         <!-- AQUÍ PONER VIDEOJUEGOS -->
+                        {{#productos}}
+						<li>{{nombre}} - {{precio}}&euro;</li>
+						{{/productos}}
                     </div>
                 </div>
             </div>

@@ -64,11 +64,16 @@ public class MassiveGamingController {
 	}
 	
 	@PostMapping("/formularioCompleto")
-	public String formularioCompleto(@RequestParam String usuario,@RequestParam String apellido,@RequestParam String correo,@RequestParam String clave) {
+	public String formularioCompleto(Model model,@RequestParam String usuario,@RequestParam String apellido,@RequestParam String correo,@RequestParam String clave) {
 		
-		usuarios.save(new Usuario(usuario,apellido,correo,clave));
+		List<Usuario> usu = usuarios.findByCorreo(correo);
+		if(usu.isEmpty()) {
+			usuarios.save(new Usuario(usuario,apellido,correo,clave));
+			model.addAttribute("guardado", true);
+		}else {
+			model.addAttribute("guardado", false);
+		}
 		
-
 		return "formularioCompleto";
 	}
 }

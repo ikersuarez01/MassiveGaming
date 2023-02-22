@@ -1,9 +1,14 @@
 <html>
 <body>
-<form action="save" method="post">
 
- <p>Nuevo usuario guardado</p>
- 
+{{#guardado}}
+<p>Nuevo usuario guardado</p>
+{{/guardado}}
+
+{{^guardado}}
+<p>Error al crear la cuenta, correo utilizado</p>
+{{/guardado}}
+
 </form>
 </body>
 </html>

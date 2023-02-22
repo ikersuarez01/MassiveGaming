@@ -55,16 +55,14 @@ public class MassiveGamingController {
 
 		return "greeting_template";
 	}
-	@GetMapping("/formulario")
-	public String formulario(Model model) {
+	@GetMapping("/crearCuenta")
+	public String crearCuenta(Model model) {
 
-		model.addAttribute("name", "Mundo");
-
-		return "formulario";
+		return "crearCuenta";
 	}
 	
-	@PostMapping("/formularioCompleto")
-	public String formularioCompleto(Model model,@RequestParam String usuario,@RequestParam String apellido,@RequestParam String correo,@RequestParam String clave) {
+	@PostMapping("/cuentaCreada")
+	public String cuentaCreada(Model model,@RequestParam String usuario,@RequestParam String apellido,@RequestParam String correo,@RequestParam String clave) {
 		
 		List<Usuario> usu = usuarios.findByCorreo(correo);
 		if(usu.isEmpty()) {
@@ -74,6 +72,6 @@ public class MassiveGamingController {
 			model.addAttribute("guardado", false);
 		}
 		
-		return "formularioCompleto";
+		return "cuentaCreada";
 	}
 }

@@ -45,12 +45,10 @@ public class MassiveGamingController {
 		
 	}
 	
-	@GetMapping("/greeting")
-	public String greeting(Model model) {
+	@GetMapping("/MassiveGaming")
+	public String home(Model model) {
 
-		model.addAttribute("name", "Mundo");
-
-		return "greeting_template";
+		return "index";
 	}
 
 }

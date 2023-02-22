@@ -37,6 +37,12 @@ public class MassiveGamingController {
 		usuarios.save(new Usuario("Lucia", "Molinero", "lucia@gmail.com", "1234"));
 		usuarios.save(new Usuario("Iker", "Suarez", "iker@gmail.com", "1234"));
 		productos.save(new Producto("Cult of the lamb", 22.99));
+		productos.save(new Producto("The last of Us", 35.9));
+		productos.save(new Producto("Mario Kart 8 Deluxe", 68.9));
+		productos.save(new Producto("Minecraft", 30.0));
+		productos.save(new Producto("Star Wars Jedi: Survivor", 55.9));
+		productos.save(new Producto("Resident Evil 4", 19.9));
+		productos.save(new Producto("Street Fighter 3", 49.9));
 		
 		List<Producto> prod = productos.findByNombre("Cult of the lamb");
 		
@@ -57,7 +63,6 @@ public class MassiveGamingController {
 	}
 	@GetMapping("/crearCuenta")
 	public String crearCuenta(Model model) {
-
 		return "crearCuenta";
 	}
 	
@@ -74,4 +79,38 @@ public class MassiveGamingController {
 		
 		return "cuentaCreada";
 	}
+	@GetMapping("/mostrarDatos")
+	public String mostrarDatos(Model model) {
+		List<Producto> prod = productos.findAll();
+		model.addAttribute("productos",prod);
+		return "mostrarDatos";
+	}
+	@PostMapping("/inicioSesion")
+	public String inicioSesion(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
+		List<Usuario> usu = usuarios.findByCorreo(correo);
+		if(usu.isEmpty()) {
+			//No existe el correo utilizado
+			model.addAttribute("texto","Error al iniciar sesión: no existe el correo utilizado");
+			return "inicioSesion";
+		}
+		if(usu.get(0).getPassword().equals(clave)) {
+			//Sesion incio correcto
+			model.addAttribute("sesionIniciada",true);
+			model.addAttribute("texto","Sesión iniciada correctamente");
+			return "inicioSesion";
+		}else {
+			//Contraseña incorrecta
+			model.addAttribute("sesionIniciada",false);
+			model.addAttribute("texto","Error al iniciar sesión: contraseña incorrecta");
+			return "inicioSesion";
+		}
+	}
+
+	@GetMapping("/iniciarSesion")
+	public String iniciarSesion(Model model) {
+		model.addAttribute("texto","");
+		return "inicioSesion";
+	}
+	
+	
 }

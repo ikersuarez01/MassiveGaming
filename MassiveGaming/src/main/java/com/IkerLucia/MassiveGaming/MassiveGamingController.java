@@ -78,6 +78,33 @@ public class MassiveGamingController {
 		return "contacto";
 	}
 	
+	@PostMapping("/inicioSesion")
+    public String inicioSesion(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
+        List<Usuario> usu = usuarios.findByCorreo(correo);
+        if(usu.isEmpty()) {
+            //No existe el correo utilizado
+            model.addAttribute("texto","Error al iniciar sesión: no existe el correo utilizado");
+            return "inicioSesion";
+        }
+        if(usu.get(0).getPassword().equals(clave)) {
+            //Sesion incio correcto
+            model.addAttribute("sesionIniciada",true);
+            model.addAttribute("texto","Sesión iniciada correctamente");
+            return "inicioSesion";
+        }else {
+            //Contraseña incorrecta
+            model.addAttribute("sesionIniciada",false);
+            model.addAttribute("texto","Error al iniciar sesión: contraseña incorrecta");
+            return "inicioSesion";
+        }
+    }
+	
+	@GetMapping("/iniciarSesion")
+    public String iniciarSesion(Model model) {
+        model.addAttribute("texto","");
+        return "inicioSesion";
+    }
+	
 	@GetMapping("/videojuegos")
 	public String videojuegos(Model model) {
 		List<Videojuego> prod = videojuegos.findAll();

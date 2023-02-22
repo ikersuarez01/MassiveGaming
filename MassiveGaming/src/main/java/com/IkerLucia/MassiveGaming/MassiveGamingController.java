@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.IkerLucia.MassiveGaming.model.*;
 import com.IkerLucia.MassiveGaming.repository.*;
@@ -52,5 +55,20 @@ public class MassiveGamingController {
 
 		return "greeting_template";
 	}
+	@GetMapping("/formulario")
+	public String formulario(Model model) {
 
+		model.addAttribute("name", "Mundo");
+
+		return "formulario";
+	}
+	
+	@PostMapping("/formularioCompleto")
+	public String formularioCompleto(@RequestParam String usuario,@RequestParam String apellido,@RequestParam String correo,@RequestParam String clave) {
+		
+		usuarios.save(new Usuario(usuario,apellido,correo,clave));
+		
+
+		return "formularioCompleto";
+	}
 }

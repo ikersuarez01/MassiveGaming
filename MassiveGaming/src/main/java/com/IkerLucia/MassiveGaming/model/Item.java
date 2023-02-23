@@ -37,4 +37,11 @@ public class Item {
 		cantidad = nuevaCantidad;
 	}
 	
+	public Boolean equals(Item i) {
+		if(this.producto == i.producto)
+			return true;
+		else
+			return false;
+	}
+	
 }

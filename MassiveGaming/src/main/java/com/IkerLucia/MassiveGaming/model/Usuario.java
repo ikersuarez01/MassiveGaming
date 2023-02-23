@@ -15,8 +15,6 @@ public class Usuario {
 	private String clave;
 	
 
-	@OneToOne
-	private Carrito carrito;
 	
 	
 	//Constructors
@@ -28,7 +26,6 @@ public class Usuario {
 		this.apellido = apellido;
 		this.correo = correo;
 		this.clave = password;
-		this.carrito = new Carrito();
 	}
 	
 	public long getId () {
@@ -58,8 +55,5 @@ public class Usuario {
 	}
 	public void setPassword(String nuevaPassword) {
 		clave = nuevaPassword;
-	}
-	public Carrito getCarrito() {
-		return carrito;
 	}
 }

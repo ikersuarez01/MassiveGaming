@@ -130,13 +130,13 @@ public class MassiveGamingController {
 		return "videojuegosConcreto";
 	}
 	@PostMapping("/videojuegos/{nombre}/valorado")
-	public String crearValoracion(Model model, @PathVariable String nombre, String texto) {
+	public String crearValoracion(Model model, @PathVariable String nombre, @RequestParam String texto) {
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("juego",prod.get(0));
 		model.addAttribute("sesionIniciada",false);
 		valoraciones.save(new Valoracion(prod.get(0),usuarios.getById(userId),texto));
 		
-		return "consolasConcreto";
+		return "videojuegosConcreto";
 	}
 	
 	@GetMapping("/consolas")

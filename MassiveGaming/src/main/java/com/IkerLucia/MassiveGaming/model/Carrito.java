@@ -17,7 +17,8 @@ public class Carrito {
 	//puedo añadir un precio total que se calcule como la suma de los precios de los items
 	
 	//Constructors
-	protected Carrito() {}
+	public Carrito() {}
+	
 	
 	public Carrito(List<Item> items) {
 		super();

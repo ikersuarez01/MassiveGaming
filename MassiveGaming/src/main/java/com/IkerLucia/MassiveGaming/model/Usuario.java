@@ -2,6 +2,9 @@ package com.IkerLucia.MassiveGaming.model;
 
 import javax.persistence.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @Entity
 public class Usuario {
 	@Id
@@ -15,7 +18,7 @@ public class Usuario {
 	private String clave;
 	
 
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Carrito carrito;
 	
 	

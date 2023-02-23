@@ -46,7 +46,11 @@
                         <h2 class="mt-0">Videojuegos</h2>
                         <hr class="divider" />
 
-						{{juego.nombre}}  {{juego.precio}}
+						<p> {{juego.nombre}}  {{juego.precio}} </p>
+						
+						<form action= "/videojuegos/{{nombre}}/cestaActualizada" method ="post">
+						<p><input type='submit' value='Añadir a la cesta' </p>
+						</form>
 						
 						{{#sesionIniciada}}
 						<form action="/videojuegos/{{nombre}}/valorado" method = "post">

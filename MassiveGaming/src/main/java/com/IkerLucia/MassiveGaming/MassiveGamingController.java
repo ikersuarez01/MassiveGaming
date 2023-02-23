@@ -138,6 +138,23 @@ public class MassiveGamingController {
 		
 		return "videojuegosConcreto";
 	}
+	@PostMapping("/videojuegos/{nombre}/cestaActualizada")
+	public String addCesta(Model model, @PathVariable String nombre) {
+		List<Videojuego> prod = videojuegos.findByNombre(nombre);
+		model.addAttribute("juego",prod.get(0));
+		if(userId != 0) {
+        	model.addAttribute("sesionIniciada",true);
+        }else {
+        	model.addAttribute("sesionIniciada",false);
+        }
+		Usuario user = usuarios.getById(userId);
+		Carrito carro = user.getCarrito();
+		
+		
+		carro.addItem(new Item(prod.get(0),1));
+		
+		return "videojuegosConcreto";
+	}
 	
 	@GetMapping("/consolas")
 	public String consolas(Model model) {

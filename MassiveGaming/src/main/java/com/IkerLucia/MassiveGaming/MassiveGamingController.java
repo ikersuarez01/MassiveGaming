@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.IkerLucia.MassiveGaming.model.*;
@@ -21,8 +23,7 @@ public class MassiveGamingController {
 
 	//Informacion compartida de inicio de sesion
 	private Long userId = (long) 0; //SI ES CERO NO HAY SESION INICIADA
-	
-	
+		
 	@Autowired
 	private UsuarioRepository usuarios;
 	@Autowired
@@ -71,7 +72,6 @@ public class MassiveGamingController {
 	}
 	@GetMapping("/crearCuenta")
 	public String crearCuenta(Model model) {
-
 		return "crearCuenta";
 	}
 	
@@ -118,6 +118,22 @@ public class MassiveGamingController {
         model.addAttribute("productos",prod);
 		return "videojuegos";
 	}
+	@GetMapping("/videojuegos/{nombre}")
+	public String videojuegosConcreto(Model model, @PathVariable String nombre) {
+		List<Videojuego> prod = videojuegos.findByNombre(nombre);
+		model.addAttribute("juego",prod.get(0));
+//        if(userId != 0) {
+        	model.addAttribute("sesionIniciada",true);
+//        }else {
+//        	model.addAttribute("sesionIniciada",false);
+//        }
+		
+		return "videojuegosConcreto";
+	}
+	@PostMapping("/videojuegos/{nombre}")
+	public String crearValoracion(@PathVariable String nombre) {
+		return "videojuegosConcreto";
+	}
 	
 	@GetMapping("/consolas")
 	public String consolas(Model model) {
@@ -127,6 +143,13 @@ public class MassiveGamingController {
         model.addAttribute("UserId", userId);
         
 		return "consolas";
+	}
+	@GetMapping("/consolas/{nombre}")
+	public String consolasConcreto(Model model, @PathVariable String nombre) {
+		List<Videojuego> prod = videojuegos.findByNombre(nombre);
+		model.addAttribute("consola",prod.get(0));
+		
+		return "consolasConcreto";
 	}
 	
 	@PostMapping("/cuentaCreada")

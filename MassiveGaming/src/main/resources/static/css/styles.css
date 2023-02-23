@@ -3058,22 +3058,22 @@ textarea.form-control-lg {
 }
     .btn-primary:hover {
         color: #fff;
-        background-color: #5f108e;
-        border-color: #5f108e;
+        background-color: #e01f26;
+        border-color: #e01f26;
     }
     .btn-check:focus + .btn-primary, .btn-primary:focus {
         color: #fff;
-        background-color: #5f108e;
-        border-color: #5f108e;
-        box-shadow: 0 0 0 0.25rem rgba(65, 3, 102, 1);
+        background-color: #e01f26;
+        border-color: #e01f26;
+        box-shadow: 0 0 0 0.25rem rgba(196, 31, 37, 1);
     }
     .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
         color: #fff;
-        background-color: #5f108e;
-        border-color: #5f108e;
+        background-color: #e01f26;
+        border-color: #e01f26;
     }
         .btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
-            box-shadow: 0 0 0 0.25rem rgba(65, 3, 102, 1);
+            box-shadow: 0 0 0 0.25rem rgba(196, 31, 37, 1);
         }
     .btn-primary:disabled, .btn-primary.disabled {
         color: #fff;
@@ -4685,10 +4685,6 @@ textarea.form-control-lg {
 .card-group > .card:not(:first-child) .card-footer {
     border-bottom-left-radius: 0;
   }
-}
-
-.projectLink:hover {
-    /*background-image: url('../assets/img/juega.png');*/
 }
 
 .figure {

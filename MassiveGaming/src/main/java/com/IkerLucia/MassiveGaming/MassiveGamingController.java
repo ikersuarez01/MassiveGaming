@@ -1,6 +1,5 @@
 package com.IkerLucia.MassiveGaming;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +19,10 @@ import com.IkerLucia.MassiveGaming.repository.*;
 @Controller
 public class MassiveGamingController {
 
+	//Informacion compartida de inicio de sesion
+	private Long userId = (long) 0; //SI ES CERO NO HAY SESION INICIADA
+	
+	
 	@Autowired
 	private UsuarioRepository usuarios;
 	@Autowired
@@ -90,6 +93,10 @@ public class MassiveGamingController {
             //Sesion incio correcto
             model.addAttribute("sesionIniciada",true);
             model.addAttribute("texto","Sesión iniciada correctamente");
+            
+            //guardamos el id del usuario en la sesion
+            userId = usu.get(0).getId();
+            
             return "inicioSesion";
         }else {
             //Contraseña incorrecta
@@ -116,6 +123,9 @@ public class MassiveGamingController {
 	public String consolas(Model model) {
 		List<Consola> prod = consolas.findAll();
         model.addAttribute("productos",prod);
+        
+        model.addAttribute("UserId", userId);
+        
 		return "consolas";
 	}
 	

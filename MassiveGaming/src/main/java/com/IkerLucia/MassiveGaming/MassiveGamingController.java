@@ -118,17 +118,21 @@ public class MassiveGamingController {
 	public String videojuegosConcreto(Model model, @PathVariable String nombre) {
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("juego",prod.get(0));
-//        if(userId != 0) {
+        if(userId != 0) {
         	model.addAttribute("sesionIniciada",true);
-//        }else {
-//        	model.addAttribute("sesionIniciada",false);
-//        }
-		
+        }else {
+        	model.addAttribute("sesionIniciada",false);
+        }
 		return "videojuegosConcreto";
 	}
-	@PostMapping("/videojuegos/{nombre}")
-	public String crearValoracion(@PathVariable String nombre) {
-		return "videojuegosConcreto";
+	@PostMapping("/videojuegos/{nombre}/valorado")
+	public String crearValoracion(Model model, @PathVariable String nombre, String texto) {
+		List<Videojuego> prod = videojuegos.findByNombre(nombre);
+		model.addAttribute("juego",prod.get(0));
+		model.addAttribute("sesionIniciada",false);
+		valoraciones.save(new Valoracion(prod.get(0),usuarios.getById(userId),texto));
+		
+		return "consolasConcreto";
 	}
 	
 	@GetMapping("/consolas")

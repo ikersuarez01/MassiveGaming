@@ -49,7 +49,7 @@
 						{{juego.nombre}}  {{juego.precio}}
 						
 						{{#sesionIniciada}}
-						<form action="crearValoracion" method="post">
+						<form action="/videojuegos/{{nombre}}/valorado" method = "post">
 						<p align="center"><textarea input rows="10" cols="50" type='text' placeholder="Su opinión" name='texto' required/></textarea><p>
 						<p align="center"><input type='submit' value='Compartir'/></p>
 						</form>

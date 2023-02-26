@@ -46,17 +46,26 @@
                         <h2 class="mt-0">Tu carrito de compra</h2>
                         <hr class="divider" />
                         
+                        {{^vacio}}
 						{{#items}}
-						<li>{{producto.nombre}}</li>
+						<li>{{producto.nombre}} - {{cantidad}} </li>
 						{{/items}}
-						
-						<form action= "/carritoVaciar" method ="post">
-						<p><input type='submit' value='Vaciar Cesta' </p>
-						</form>
+						<p><p>
+						<p>Precio total de la compra: {{precio}}&euro;</p>
 						
 						<form action= "/carritoComprar" method ="post">
 						<p><input type='submit' value='Comprar' </p>
 						</form>
+						
+						<form action= "/carritoVaciar" method ="post">
+						<p><input type='submit' value='Vaciar Cesta' </p>
+						</form>
+						{{/vacio}}
+						
+						{{#vacio}}
+						<p> Tu carrito está vacío</p>
+						{{/vacio}}
+						
                     </div>
                 </div>
             </div>

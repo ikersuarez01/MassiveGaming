@@ -18,12 +18,13 @@ public class Compra {
 	@OneToOne
 	private Usuario usuario;
 	private Date fecha;
+	private Double precio;
 	
 	
 	//Constructors
 	protected Compra() {}
 	
-	public Compra(List<Item> item, Usuario usuario, Date fecha) {
+	public Compra(List<Item> item, Usuario usuario, Date fecha, Double precio) {
 		super();
 		this.item = new ArrayList<Item>();
 		for(int i = 0; i < item.size();i++) {
@@ -32,6 +33,8 @@ public class Compra {
 		//this.item = item;
 		this.usuario = usuario;
 		this.fecha = fecha;
+		this.precio = precio;
+		
 	}
 	
 	public long getId () {

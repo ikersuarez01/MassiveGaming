@@ -1,6 +1,7 @@
 package com.IkerLucia.MassiveGaming;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,19 @@ public class MassiveGamingController {
         }
 		return "index";
 	}
+	@GetMapping("/MassiveGamingC")
+	public String cerrarSesion(Model model) {
+		userId=(long) 0;
+		List<Videojuego> prod = videojuegos.findAll();
+        model.addAttribute("productos",prod);
+        if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		return "index";
+	}
 	@GetMapping("/crearCuenta")
 	public String crearCuenta(Model model) {
 		return "crearCuenta";
@@ -84,6 +98,7 @@ public class MassiveGamingController {
 
 		return "contacto";
 	}
+	
 	
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
@@ -198,7 +213,7 @@ public class MassiveGamingController {
         model.addAttribute("valoraciones",val);
 		Usuario user = usuarios.getById(userId);
 		Carrito carro = user.getCarrito();
-		Item unidadItem = new Item(prod.get(0),1,usuarios.getById(userId).getCarrito());
+		Item unidadItem = new Item(prod.get(0),1);
 		items.save(unidadItem);
 		
 		carro.addItem(unidadItem);
@@ -242,9 +257,18 @@ public class MassiveGamingController {
 		if(userId != 0) {
 			List<Item> listaItems = usuarios.getById(userId).getCarrito().getItems();
 			model.addAttribute("items",listaItems);
+			if(listaItems.isEmpty()) {
+				model.addAttribute("vacio", true);
+				model.addAttribute("precio", 0.0);
+			}else {
+				model.addAttribute("vacio", false);
+				DecimalFormat format1 = new DecimalFormat("#.00");
+				model.addAttribute("precio", format1.format(usuarios.getById(userId).getCarrito().getPrecio()));
+			}
 		}else {
 			model.addAttribute("items","");
 		}
+			
 		return "carrito";
 	}
 	@PostMapping("/carritoVaciar")
@@ -256,6 +280,14 @@ public class MassiveGamingController {
 			usuarios.save(usu);
 			listaItems = usuarios.getById(userId).getCarrito().getItems();
 			model.addAttribute("items",listaItems);
+			if(listaItems.isEmpty()) {
+				model.addAttribute("vacio", true);
+				model.addAttribute("precio", 0.0);
+			}else {
+				model.addAttribute("vacio", false);
+				DecimalFormat format1 = new DecimalFormat("#.00");
+				model.addAttribute("precio", format1.format(usuarios.getById(userId).getCarrito().getPrecio()));
+			}
 		}else {
 			model.addAttribute("items","");
 		}
@@ -266,15 +298,24 @@ public class MassiveGamingController {
 		if(userId != 0) {
 			Usuario usu = usuarios.getById(userId);
 			List<Item> listaItems = usu.getCarrito().getItems();
-			Compra nuevaCompra = new Compra(listaItems,usuarios.getById(userId),Date.valueOf(java.time.LocalDate.now()));
+			DecimalFormat format1 = new DecimalFormat("#.00");
+			Compra nuevaCompra = new Compra(listaItems,usuarios.getById(userId),Date.valueOf(java.time.LocalDate.now()),usuarios.getById(userId).getCarrito().getPrecio());
 			compras.save(nuevaCompra);
 			usu.getCarrito().resetItems();
 			usuarios.save(usu);
 			listaItems = usuarios.getById(userId).getCarrito().getItems();
 			model.addAttribute("items",listaItems);
+			if(listaItems.isEmpty()) {
+				model.addAttribute("vacio", true);
+				model.addAttribute("precio", 0.0);
+			}else {
+				model.addAttribute("vacio", false);
+				format1 = new DecimalFormat("#.00");
+				model.addAttribute("precio", format1.format(usuarios.getById(userId).getCarrito().getPrecio()));
+			}
 		}else {
 			model.addAttribute("items","");
-		}
+		}	
 			
 		return "carrito";
 	}

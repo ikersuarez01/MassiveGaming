@@ -22,7 +22,7 @@ public class Item {
 		this.cantidad=item.cantidad;
 	}
 	
-	public Item(Producto producto, int cantidad, Carrito carrito) {
+	public Item(Producto producto, int cantidad) {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;

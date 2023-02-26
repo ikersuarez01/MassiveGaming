@@ -16,8 +16,13 @@ public class Item {
 	
 	//Constructors
 	protected Item() {}
+	public Item(Item item){
+		super();
+		this.producto=item.producto;
+		this.cantidad=item.cantidad;
+	}
 	
-	public Item(Producto producto, int cantidad) {
+	public Item(Producto producto, int cantidad, Carrito carrito) {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;

@@ -45,9 +45,18 @@
                     <div class="col-lg-8 col-xl-6 text-center">
                         <h2 class="mt-0">Tu carrito de compra</h2>
                         <hr class="divider" />
-
+                        
+						{{#items}}
+						<li>{{producto.nombre}}</li>
+						{{/items}}
 						
+						<form action= "/carritoVaciar" method ="post">
+						<p><input type='submit' value='Vaciar Cesta' </p>
+						</form>
 						
+						<form action= "/carritoComprar" method ="post">
+						<p><input type='submit' value='Comprar' </p>
+						</form>
                     </div>
                 </div>
             </div>

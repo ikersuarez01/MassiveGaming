@@ -13,6 +13,7 @@ public class Valoracion {
 	
 	@OneToOne
 	private Usuario usuario;
+	private String nombreProducto;
 	private String texto;
 	
 	
@@ -22,6 +23,7 @@ public class Valoracion {
 	public Valoracion(Producto producto, Usuario usuario, String texto) {
 		super();
 		this.producto = producto;
+		this.nombreProducto = producto.getNombre();
 		this.usuario = usuario;
 		this.texto = texto;
 	}
@@ -31,6 +33,9 @@ public class Valoracion {
 	}
 	
 	public Usuario getUsuario() {
+		return usuario;
+	}
+	public Usuario getNombreProducto() {
 		return usuario;
 	}
 	public Producto getProducto() {

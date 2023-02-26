@@ -1,6 +1,7 @@
 package com.IkerLucia.MassiveGaming.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Item> item;
 	
 	@OneToOne
@@ -24,7 +25,11 @@ public class Compra {
 	
 	public Compra(List<Item> item, Usuario usuario, Date fecha) {
 		super();
-		this.item = item;
+		this.item = new ArrayList<Item>();
+		for(int i = 0; i < item.size();i++) {
+			this.item.add(item.get(i));
+		}
+		//this.item = item;
 		this.usuario = usuario;
 		this.fecha = fecha;
 	}

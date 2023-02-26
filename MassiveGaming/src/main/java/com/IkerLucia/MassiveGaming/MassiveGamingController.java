@@ -1,5 +1,8 @@
 package com.IkerLucia.MassiveGaming;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +39,7 @@ public class MassiveGamingController {
 	private ValoracionRepository valoraciones;
 	@Autowired
 	private ItemRepository items;
+	
 
 	
 	@PostConstruct
@@ -52,15 +56,6 @@ public class MassiveGamingController {
 		videojuegos.save(new Videojuego("Street Fighter 3", 49.9, true));
 		
 		consolas.save(new Consola("Nintendo Switch", 359.99, "Rojo-Azul"));
-
-		
-		List<Videojuego> prod = videojuegos.findByNombre("Cult of the lamb");
-		
-		items.save(new Item(prod.get(0), 1));
-		
-		List<Usuario> user = usuarios.findByNombre("Lucia");
-
-		compras.save(new Compra(items.findById(4), user.get(0), new java.sql.Date(23, 01, 2023)));
 		
 	}
 	
@@ -127,6 +122,8 @@ public class MassiveGamingController {
         }else {
         	model.addAttribute("sesionIniciada",false);
         }
+        List<Valoracion> val = valoraciones.findByNombreProducto(nombre);
+        model.addAttribute("valoraciones",val);
 		return "videojuegosConcreto";
 	}
 	@PostMapping("/videojuegos/{nombre}/valorado")
@@ -135,7 +132,8 @@ public class MassiveGamingController {
 		model.addAttribute("juego",prod.get(0));
 		model.addAttribute("sesionIniciada",false);
 		valoraciones.save(new Valoracion(prod.get(0),usuarios.getById(userId),texto));
-		
+		List<Valoracion> val = valoraciones.findByNombreProducto(nombre);
+        model.addAttribute("valoraciones",val);
 		return "videojuegosConcreto";
 	}
 	@PostMapping("/videojuegos/{nombre}/cestaActualizada")
@@ -147,11 +145,15 @@ public class MassiveGamingController {
         }else {
         	model.addAttribute("sesionIniciada",false);
         }
+		List<Valoracion> val = valoraciones.findByNombreProducto(nombre);
+        model.addAttribute("valoraciones",val);
 		Usuario user = usuarios.getById(userId);
 		Carrito carro = user.getCarrito();
+		Item unidadItem = new Item(prod.get(0),1,usuarios.getById(userId).getCarrito());
+		items.save(unidadItem);
 		
-		
-		carro.addItem(new Item(prod.get(0),1));
+		carro.addItem(unidadItem);
+		usuarios.save(user);
 		
 		return "videojuegosConcreto";
 	}
@@ -185,5 +187,46 @@ public class MassiveGamingController {
 		}
 		
 		return "cuentaCreada";
+	}
+	@GetMapping("/carrito")
+	public String carrito(Model model) {
+		if(userId != 0) {
+			List<Item> listaItems = usuarios.getById(userId).getCarrito().getItems();
+			model.addAttribute("items",listaItems);
+		}else {
+			model.addAttribute("items","");
+		}
+		return "carrito";
+	}
+	@PostMapping("/carritoVaciar")
+	public String carritoVaciar(Model model) {
+		if(userId != 0) {
+			Usuario usu = usuarios.getById(userId);
+			List<Item> listaItems = usu.getCarrito().getItems();
+			usu.getCarrito().resetItems();
+			usuarios.save(usu);
+			listaItems = usuarios.getById(userId).getCarrito().getItems();
+			model.addAttribute("items",listaItems);
+		}else {
+			model.addAttribute("items","");
+		}
+		return "carrito";
+	}
+	@PostMapping("/carritoComprar")
+	public String carritoComprar(Model model) {
+		if(userId != 0) {
+			Usuario usu = usuarios.getById(userId);
+			List<Item> listaItems = usu.getCarrito().getItems();
+			Compra nuevaCompra = new Compra(listaItems,usuarios.getById(userId),Date.valueOf(java.time.LocalDate.now()));
+			compras.save(nuevaCompra);
+			usu.getCarrito().resetItems();
+			usuarios.save(usu);
+			listaItems = usuarios.getById(userId).getCarrito().getItems();
+			model.addAttribute("items",listaItems);
+		}else {
+			model.addAttribute("items","");
+		}
+			
+		return "carrito";
 	}
 }

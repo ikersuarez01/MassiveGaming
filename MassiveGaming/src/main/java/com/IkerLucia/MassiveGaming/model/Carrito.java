@@ -11,14 +11,13 @@ public class Carrito {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 		
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Item> items;
 	
 	//puedo añadir un precio total que se calcule como la suma de los precios de los items
 	
 	//Constructors
 	public Carrito() {}
-	
 	
 	public Carrito(List<Item> items) {
 		super();
@@ -35,6 +34,9 @@ public class Carrito {
 	
 	public void addItem(Item item) {
 		items.add(item);
+	}
+	public void resetItems() {
+		items.clear();
 	}
 	
 }

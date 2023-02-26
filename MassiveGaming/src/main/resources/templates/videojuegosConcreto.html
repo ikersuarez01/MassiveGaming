@@ -48,9 +48,11 @@
 
 						<p> {{juego.nombre}}  {{juego.precio}} </p>
 						
+						{{#sesionIniciada}}
 						<form action= "/videojuegos/{{nombre}}/cestaActualizada" method ="post">
 						<p><input type='submit' value='Añadir a la cesta' </p>
 						</form>
+						{{/sesionIniciada}}
 						
 						{{#sesionIniciada}}
 						<form action="/videojuegos/{{nombre}}/valorado" method = "post">
@@ -58,8 +60,15 @@
 						<p align="center"><input type='submit' value='Compartir'/></p>
 						</form>
 						{{/sesionIniciada}}
-						
+						 <hr class="divider" />
                     </div>
+                    <h2 class="mt-0">Valoraciones de los usuarios</h2>
+                    	{{#valoraciones}}
+                    	<dl>
+						<dt>{{usuario.nombre}}:</dt>
+						<dd>{{texto}}</dd>
+						</dl
+						{{/valoraciones}}
                 </div>
             </div>
         </section>

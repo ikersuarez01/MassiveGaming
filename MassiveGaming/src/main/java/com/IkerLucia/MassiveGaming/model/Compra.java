@@ -53,5 +53,8 @@ public class Compra {
 	public void setFecha(Date newFecha) {
 		fecha = newFecha;
 	}
+	public Double getPrecio() {
+		return precio;
+	}
 	
 }

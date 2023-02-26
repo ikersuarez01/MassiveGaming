@@ -61,8 +61,31 @@
 						<p align="center"><input type='submit' value='Actualizar Datos'/></p>
            				
             			</form>
+                        <hr class="divider" />
+                        <h2 class="mt-0">Compras Realizadas:</h2>
                         
+                        {{#vacio}}
+                        <p>No se ha realizado ninguna compra todavía</p>
+                        {{/vacio}}
+                        
+                    {{^vacio}}
+                    <table>
+					  <tr>
+					    <th>Fecha</th>
+					    <th>Precio</th>
+					    <th>Productos</th>
+					  </tr>
+					  {{#compra}}
+					  <tr>
+					    <td>{{fecha}}</td>
+					    <td>{{precio}}&euro;</td>
+					    <td>{{#item}}{{producto.nombre}} - {{cantidad}}<br>{{/item}}</td>
+					  </tr>
+					  {{/compra}}
+					</table>
                     </div>
+                    {{/vacio}}
+                    
                 </div>
             </div>
         </section>

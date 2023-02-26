@@ -10,11 +10,14 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -63,6 +66,12 @@ public class MassiveGamingController {
 	public String home(Model model) {
 		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
+        if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		return "index";
 	}
 	@GetMapping("/crearCuenta")
@@ -75,6 +84,46 @@ public class MassiveGamingController {
 
 		return "contacto";
 	}
+	
+	@GetMapping("/perfil")
+	public String perfil(Model model) {
+		//tecnicamente en esta pagina no se mete si no está logueado
+		//userId != 0
+		Usuario user = usuarios.getById(userId);
+		
+        model.addAttribute("NombreUser", user.getNombre());
+        model.addAttribute("ApellidoUser", user.getApellido());
+        model.addAttribute("CorreoUser", user.getCorreo());
+        model.addAttribute("PasswordUser", user.getPassword());
+
+		
+		return "perfil";
+	}
+	
+	@PostMapping("/perfil/actualizado")
+	public  String UpdateUser(Model model, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String correo,@RequestParam String password) {
+		Usuario user = usuarios.getById(userId);
+		
+		model.addAttribute("idtemp", user.getId());
+		if(nombre != "")
+			user.setNombre(nombre);
+		if(apellido != "")
+			user.setApellido(apellido);
+		if(correo != "")
+			user.setCorreo(correo);			
+		if(password != "")
+			user.setPassword(password);
+		
+		usuarios.save(user);
+		
+        model.addAttribute("NombreUser", user.getNombre());
+        model.addAttribute("ApellidoUser", user.getApellido());
+        model.addAttribute("CorreoUser", user.getCorreo());
+        model.addAttribute("PasswordUser", user.getPassword());
+
+		return "perfil";
+	}
+
 	
 	@PostMapping("/inicioSesion")
     public String inicioSesion(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {

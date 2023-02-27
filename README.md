@@ -40,6 +40,12 @@ Envío de correo electrónico con la información de la compra realizada.
 <hr class="divider" />
  
 ### Capturas de la Aplicación
+
+-Pantalla principal sin iniciar sesion:
+ ![image](https://user-images.githubusercontent.com/58294628/221614973-5ffbd391-a345-44e3-9a8e-2a8194cd0d69.png)
+
+
+
 ### Diagramas
 #### Diagrama de Navegación de la Aplicación Web
   ![image](https://user-images.githubusercontent.com/58294628/221549188-7485bb4a-efbe-4d31-802b-8ef949701cc7.png)

@@ -16,8 +16,16 @@ public class Carrito {
 	
 	private Double precio;
 	
+	@OneToOne
+	private Usuario usuario;
+	
+	protected Carrito() {
+		
+	}
 	//Constructors
-	public Carrito() {
+	public Carrito(Usuario usuario) {
+		super();
+		this.usuario=usuario;
 		precio=0.0;
 	}
 	

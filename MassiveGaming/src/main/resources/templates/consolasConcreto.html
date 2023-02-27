@@ -49,10 +49,32 @@
                 <p><br></p><p><br></p>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">Videojuegos</h2>
+                        <h2 class="mt-0">Consolas</h2>
                         <hr class="divider" />
 
-						{{consola.nombre}}  {{consola.precio}}
+						<p> {{consola.nombre}}  {{consola.precio}} </p>
+						
+						{{#sesionIniciada}}
+						<form action= "/consolas/{{nombre}}/cestaActualizada" method ="post">
+						<p><input type='submit' value='Añadir a la cesta' </p>
+						</form>
+						{{/sesionIniciada}}
+						
+						{{#sesionIniciada}}
+						<form action="/consolas/{{nombre}}/valorado" method = "post">
+						<p align="center"><textarea input rows="10" cols="50" type='text' placeholder="Su opinión" name='texto' required/></textarea><p>
+						<p align="center"><input type='submit' value='Compartir'/></p>
+						</form>
+						{{/sesionIniciada}}
+						 <hr class="divider" />
+                    </div>
+                    <h2 class="mt-0">Valoraciones de los usuarios</h2>
+                    	{{#valoraciones}}
+                    	<dl>
+						<dt>{{usuario.nombre}}:</dt>
+						<dd>{{texto}}</dd>
+						</dl
+						{{/valoraciones}}
 						
                     </div>
                 </div>

@@ -284,7 +284,7 @@ public class MassiveGamingController {
 		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("juego",prod.get(0));
-		model.addAttribute("sesionIniciada",false);
+		model.addAttribute("sesionIniciada",true);
 		valoraciones.save(new Valoracion(prod.get(0),usuarios.getById(userId),texto));
 		List<Valoracion> val = valoraciones.findByNombreProducto(nombre);
         model.addAttribute("valoraciones",val);
@@ -341,7 +341,6 @@ public class MassiveGamingController {
 	}
 	@GetMapping("/consolas/{nombre}")
 	public String consolasConcreto(Model model, @PathVariable String nombre) {
-		
 		//Parte común de la nav bar
 		if(userId == 0) {
         	//No se ha iniciado sesion
@@ -349,9 +348,45 @@ public class MassiveGamingController {
         }else {
             model.addAttribute("mostrarPerfil",true);
         }
-		
-		List<Videojuego> prod = videojuegos.findByNombre(nombre);
+		List<Consola> prod = consolas.findByNombre(nombre);
 		model.addAttribute("consola",prod.get(0));
+        if(userId != 0) {
+        	model.addAttribute("sesionIniciada",true);
+        }else {
+        	model.addAttribute("sesionIniciada",false);
+        }
+        List<Valoracion> val = valoraciones.findByNombreProducto(nombre);
+        model.addAttribute("valoraciones",val);
+		return "consolasConcreto";
+	}
+	@PostMapping("/consolas/{nombre}/valorado")
+	public String crearValoracionConsola(Model model, @PathVariable String nombre, @RequestParam String texto) {
+		List<Consola> prod = consolas.findByNombre(nombre);
+		model.addAttribute("consola",prod.get(0));
+		model.addAttribute("sesionIniciada",true);
+		valoraciones.save(new Valoracion(prod.get(0),usuarios.getById(userId),texto));
+		List<Valoracion> val = valoraciones.findByNombreProducto(nombre);
+        model.addAttribute("valoraciones",val);
+		return "consolasConcreto";
+	}
+	@PostMapping("/consolas/{nombre}/cestaActualizada")
+	public String addCestaConsola(Model model, @PathVariable String nombre) {
+		List<Consola> prod = consolas.findByNombre(nombre);
+		model.addAttribute("consola",prod.get(0));
+		if(userId != 0) {
+        	model.addAttribute("sesionIniciada",true);
+        }else {
+        	model.addAttribute("sesionIniciada",false);
+        }
+		List<Valoracion> val = valoraciones.findByNombreProducto(nombre);
+        model.addAttribute("valoraciones",val);
+		Usuario user = usuarios.getById(userId);
+		Carrito carro = user.getCarrito();
+		Item unidadItem = new Item(prod.get(0),1);
+		items.save(unidadItem);
+		
+		carro.addItem(unidadItem);
+		usuarios.save(user);
 		
 		return "consolasConcreto";
 	}

@@ -29,6 +29,8 @@ Envío de correo electrónico cuando el usuario olvida su contraseña.
 Envío de correo electrónico con la información de la compra realizada.
 
 # FASE 2
+### Diagramas
+#### Diagrama de Navegación de la Aplicación Web
   
-#### Diagrama Entidad/Relación con atributos
+#### Diagrama Entidad/Relación con Atributos
   ![image](https://user-images.githubusercontent.com/58294628/221546472-554c9ec2-f8f7-41bc-9c96-473f657ab4af.png)

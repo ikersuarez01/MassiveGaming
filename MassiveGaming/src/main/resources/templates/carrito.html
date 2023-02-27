@@ -54,7 +54,7 @@
                         
                         {{^vacio}}
 						{{#items}}
-						<li>{{producto.nombre}} - {{cantidad}} </li>
+						<li>{{producto.nombre}} - {{^tipo}}{{#producto.fisico_digital}}Versión digital{{/producto.fisico_digital}}{{^producto.fisico_digital}}Versión fisica{{/producto.fisico_digital}}{{/tipo}}{{#tipo}}Color: {{producto.color}}{{/tipo}} - Cantidad: {{cantidad}} </li>
 						{{/items}}
 						<p><p>
 						<p>Precio total de la compra: {{precio}}&euro;</p>

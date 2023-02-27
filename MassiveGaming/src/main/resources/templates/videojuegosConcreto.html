@@ -55,9 +55,16 @@
 						<p> {{juego.nombre}}  {{juego.precio}} </p>
 						
 						{{#sesionIniciada}}
-						<form action= "/videojuegos/{{nombre}}/cestaActualizada" method ="post">
-						<p><input type='submit' value='Añadir al carrito' </p>
+						{{#versionFisico}}
+						<form action= "/videojuegos/{{nombre}}/cestaActualizadaF" method ="post">
+						<p><input type='submit' value='Añadir versión fisica a la cesta' </p>
 						</form>
+						{{/versionFisico}}
+						{{#versionDigital}}
+						<form action= "/videojuegos/{{nombre}}/cestaActualizadaD" method ="post">
+						<p><input type='submit' value='Añadir versión digital a la cesta' </p>
+						</form>
+						{{/versionDigital}}
 						{{/sesionIniciada}}
 						
 						{{#sesionIniciada}}

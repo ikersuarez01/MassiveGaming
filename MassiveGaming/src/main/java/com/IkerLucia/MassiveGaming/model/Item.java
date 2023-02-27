@@ -12,7 +12,7 @@ public class Item {
 	@OneToOne
 	private Producto producto;
 	private int cantidad;
-	
+	private Boolean tipo; //false = videojuego / true = consola
 	
 	//Constructors
 	protected Item() {}
@@ -22,10 +22,11 @@ public class Item {
 		this.cantidad=item.cantidad;
 	}
 	
-	public Item(Producto producto, int cantidad) {
+	public Item(Producto producto, int cantidad, Boolean tipo) {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
+		this.tipo = tipo;
 	}
 	
 	public long getId () {
@@ -37,6 +38,12 @@ public class Item {
 	}
 	public int getCantidad() {
 		return cantidad;
+	}
+	public Boolean getTipo() {
+		return tipo;
+	}
+	public void setTipo(Boolean nuevoTipo) {
+		tipo = nuevoTipo;
 	}
 	public void setCantidad(int nuevaCantidad) {
 		cantidad = nuevaCantidad;

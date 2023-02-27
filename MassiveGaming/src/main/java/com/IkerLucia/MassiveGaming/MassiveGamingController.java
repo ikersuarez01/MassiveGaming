@@ -190,6 +190,12 @@ public class MassiveGamingController {
         model.addAttribute("ApellidoUser", user.getApellido());
         model.addAttribute("CorreoUser", user.getCorreo());
         model.addAttribute("PasswordUser", user.getPassword());
+        model.addAttribute("compra", compras.findByUsuario(usuarios.getById(userId)));
+        if(compras.findByUsuario(usuarios.getById(userId)).isEmpty()) {
+        	model.addAttribute("vacio", true);
+        }else {
+        	model.addAttribute("vacio", false);
+        }
 
 		return "perfil";
 	}

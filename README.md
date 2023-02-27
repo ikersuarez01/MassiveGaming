@@ -1,10 +1,14 @@
-# MassiveGaming!
+<div align="center">
+  <h1> MassiveGaming</h1>
+  <img src="https://user-images.githubusercontent.com/58294628/221609108-527ae253-c774-45b3-bb9e-1808059f6f6b.png" width="400" height="400"/>
+</div>
 
-[logoMassiveGaming](https://user-images.githubusercontent.com/58294628/221608428-2faf171a-bc89-4d2b-8e8a-f251603ac100.png)
+<div align="center">
+<h1>FASE 1</h1>
+</div>
+<hr class="divider" />
 
 Nombre de la aplicación web : Massive Gaming
-
-# FASE 1
 
 Descripción aplicación: se trata de una una plataforma de venta online de videojuegos y consolas.
 
@@ -14,14 +18,14 @@ Funcionalidades privadas: al registrarse o iniciar sesión, podrá realizar una 
 
 Entidades:
 
-<li>Usuario: es el cliente que se registra para realizar una compra y valora los productos.
-<li>Producto: elemento disponible para compra.
-<li>Videojuego: producto concreto del que se puede elegir su formato (físico o digital)
-<li>Consola: producto concreto del que se puede elegir el color.
-<li>Compra: transacción que almacena la fecha, el producto, la cantidad, el precio y el usuario. Se trata de una entidad débil.
-<li>Valoración: es la opinión que se hace de cualquier usuario de un producto. Solo un usuario que haya realizado una compra de este producto puede realizar una valoración sobre el mismo.
-<li>Carrito: contiene ítems de la compra.
-<li>Ítem: referencia a producto.
+<li><strong>Usuario:</strong> es el cliente que se registra para realizar una compra y valora los productos.
+<li><strong>Producto:</strong> elemento disponible para compra.
+<li><strong>Videojuego:</strong> producto concreto del que se puede elegir su formato (físico o digital)
+<li><strong>Consola:</strong> producto concreto del que se puede elegir el color.
+<li><strong>Compra:</strong> transacción que almacena la fecha, el producto, la cantidad, el precio y el usuario. Se trata de una entidad débil.
+<li><strong>Valoración:</strong> es la opinión que se hace de cualquier usuario de un producto. Solo un usuario que haya realizado una compra de este producto puede realizar una valoración sobre el mismo.
+<li><strong>Carrito:</strong> contiene ítems de la compra.
+<li><strong>Ítem:</strong> referencia a producto.
 
 Funcionalidades servicio interno:
 
@@ -30,7 +34,11 @@ Envío de correo electrónico al registrarse.
 Envío de correo electrónico cuando el usuario olvida su contraseña.
 Envío de correo electrónico con la información de la compra realizada.
 
-# FASE 2
+<div align="center">
+<h1>FASE 2</h1>
+</div>
+<hr class="divider" />
+ 
 ### Capturas de la Aplicación
 ### Diagramas
 #### Diagrama de Navegación de la Aplicación Web

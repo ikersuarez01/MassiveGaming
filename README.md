@@ -62,7 +62,7 @@ Envío de correo electrónico con la información de la compra realizada.
 -Pantalla de carrito (permite manipular el carrito y realizar compra):
 ![image](https://user-images.githubusercontent.com/79792065/221648117-b4c822ea-1f55-4dca-82dc-f0b74c299d49.png)
 
--Pantalla de perfil (permite editar datos del usuario y visualizar compras realizazdas):
+-Pantalla de perfil (permite editar datos del usuario y visualizar compras realizadas):
 ![image](https://user-images.githubusercontent.com/79792065/221648325-ba5a111b-f40d-491a-80cc-b14979bf695c.png)
 
 -Pantalla de contacto:

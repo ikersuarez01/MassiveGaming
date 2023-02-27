@@ -60,7 +60,7 @@ Envío de correo electrónico con la información de la compra realizada.
 ![image](https://user-images.githubusercontent.com/79792065/221647869-0edf3021-6d11-4435-a9c5-b3453883d1b6.png)
 
 -Pantalla de carrito (permite manipular el carrito y realizar compra):
-![image](https://user-images.githubusercontent.com/79792065/221648117-b4c822ea-1f55-4dca-82dc-f0b74c299d49.png)xº
+![image](https://user-images.githubusercontent.com/79792065/221648117-b4c822ea-1f55-4dca-82dc-f0b74c299d49.png)
 
 -Pantalla de perfil (permite editar datos del usuario y visualizar compras realizazdas):
 ![image](https://user-images.githubusercontent.com/79792065/221648325-ba5a111b-f40d-491a-80cc-b14979bf695c.png)

@@ -8,4 +8,5 @@ import com.IkerLucia.MassiveGaming.model.*;
 
 public interface ConsolaRepository extends JpaRepository<Consola, Long> {
 	 List<Consola> findByNombre(String nombre);
+	 List<Consola> findByColor(String color);
 }

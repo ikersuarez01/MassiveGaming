@@ -49,9 +49,11 @@
 						<p> {{consola.nombre}}  {{consola.precio}} </p>
 						
 						{{#sesionIniciada}}
-						<form action= "/consolas/{{nombre}}/cestaActualizada" method ="post">
-						<p><input type='submit' value='Añadir a la cesta' </p>
+						{{#color}}
+						<form action= "/consolas/{{nombre}}/cestaActualizada/{{color}}" method ="post">
+						<p><input type='submit' value='Añadir a la cesta (Color: {{color}})' </p>
 						</form>
+						{{/color}}
 						{{/sesionIniciada}}
 						
 						{{#sesionIniciada}}
@@ -67,7 +69,7 @@
                     	<dl>
 						<dt>{{usuario.nombre}}:</dt>
 						<dd>{{texto}}</dd>
-						</dl
+						</dl>
 						{{/valoraciones}}
 						
                     </div>

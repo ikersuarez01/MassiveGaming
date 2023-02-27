@@ -79,7 +79,7 @@
 					  <tr>
 					    <td>{{fecha}}</td>
 					    <td>{{precio}}&euro;</td>
-					    <td>{{#item}}{{producto.nombre}} - {{cantidad}}<br>{{/item}}</td>
+					    <td>{{#item}}{{producto.nombre}} - {{^tipo}}{{#producto.fisico_digital}}Versión digital{{/producto.fisico_digital}}{{^producto.fisico_digital}}Versión fisica{{/producto.fisico_digital}}{{/tipo}}{{#tipo}}Color: {{producto.color}}{{/tipo}} - {{cantidad}}<br>{{/item}}</td>
 					  </tr>
 					  {{/compra}}
 					</table>

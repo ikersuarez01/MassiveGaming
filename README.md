@@ -41,8 +41,32 @@ Envío de correo electrónico con la información de la compra realizada.
  
 ### Capturas de la Aplicación
 
--Pantalla principal sin iniciar sesion:
+-Pantalla principal sin iniciar sesión:
  ![image](https://user-images.githubusercontent.com/58294628/221614973-5ffbd391-a345-44e3-9a8e-2a8194cd0d69.png)
+
+-Pantalla de inicio de sesión:
+![image](https://user-images.githubusercontent.com/79792065/221647497-53c5a7b0-e2d9-4c61-b8f3-033a515f599b.png)
+
+-Pantalla de creación de cuenta:
+![image](https://user-images.githubusercontent.com/79792065/221648677-f99d0b61-0dd4-4891-b757-08a1d8daa788.png)
+
+-Pantalla de selección de producto:
+![image](https://user-images.githubusercontent.com/79792065/221647577-81bd5f33-d301-40d6-824c-48f27da4cb86.png)
+
+-Pantalla de producto concreto sin iniciar sesión (permite visualizar el producto y sus valoraciones):
+![image](https://user-images.githubusercontent.com/79792065/221647688-041b5f93-3924-44eb-a27d-d3b83f367403.png)
+
+-Pantalla de producto concreto con sesión iniciada (permite adicionalmente añadir producto al carrito y valorar el producto):
+![image](https://user-images.githubusercontent.com/79792065/221647869-0edf3021-6d11-4435-a9c5-b3453883d1b6.png)
+
+-Pantalla de carrito (permite manipular el carrito y realizar compra):
+![image](https://user-images.githubusercontent.com/79792065/221648117-b4c822ea-1f55-4dca-82dc-f0b74c299d49.png)xº
+
+-Pantalla de perfil (permite editar datos del usuario y visualizar compras realizazdas):
+![image](https://user-images.githubusercontent.com/79792065/221648325-ba5a111b-f40d-491a-80cc-b14979bf695c.png)
+
+-Pantalla de contacto:
+![image](https://user-images.githubusercontent.com/79792065/221647951-bc202e27-3cb8-4742-b02f-4590761ef896.png)
 
 
 

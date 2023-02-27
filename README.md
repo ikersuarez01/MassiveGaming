@@ -1,4 +1,6 @@
-# MassiveGaming
+# MassiveGaming!
+
+[logoMassiveGaming](https://user-images.githubusercontent.com/58294628/221608428-2faf171a-bc89-4d2b-8e8a-f251603ac100.png)
 
 Nombre de la aplicación web : Massive Gaming
 
@@ -29,6 +31,7 @@ Envío de correo electrónico cuando el usuario olvida su contraseña.
 Envío de correo electrónico con la información de la compra realizada.
 
 # FASE 2
+### Capturas de la Aplicación
 ### Diagramas
 #### Diagrama de Navegación de la Aplicación Web
   ![image](https://user-images.githubusercontent.com/58294628/221549188-7485bb4a-efbe-4d31-802b-8ef949701cc7.png)

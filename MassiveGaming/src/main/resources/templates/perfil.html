@@ -20,25 +20,31 @@
     </head>
     <body id="page-top" style="background-color:#fce3e3;">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-body fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a href="MassiveGaming"><img src="/img/logoMassiveGaming.png" style="height: 128px; width: 128px; margin-right: 22px" /></a>
-                <a class="navbar-brand fs-4" href="MassiveGaming">Massive Gaming</a>
+                <a href="/MassiveGaming"><img src="/img/logoMassiveGaming.png" style="height: 128px; width: 128px; margin-right: 22px" /></a>
+                <a class="navbar-brand fs-4" href="/MassiveGaming">Massive Gaming</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link fs-5" href="videojuegos">Videojuegos</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="consolas">Consolas</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="iniciarSesion">Iniciar Sesion</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="#spaceOddity">Carrito</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="contacto">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="/videojuegos">Videojuegos</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="/consolas">Consolas</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="/contacto">Contacto</a></li>
+                        {{^mostrarPerfil}}
+                        <li class="nav-item"><a class="nav-link fs-5" href="/iniciarSesion">Iniciar Sesion</a></li>
+                        {{/mostrarPerfil}}
+                        {{#mostrarPerfil}}
+                        <li class="nav-item"><a class="nav-link fs-5" href="/perfil">Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="/carrito">Carrito</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="/MassiveGamingC">Cerrar Sesión</a></li>
+                        {{/mostrarPerfil}}
                     </ul>
                 </div>
             </div>
         </nav>
         
-       <!-- Contacto-->
-        <section class="page-section" id="contact">
+       <!-- Perfil-->
+        <section class="page-section" id="perfil">
             <div class="container px-4 px-lg-5">
                 <p><br></p><p><br></p>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -61,15 +67,15 @@
 						<p align="center"><input type='submit' value='Actualizar Datos'/></p>
            				
             			</form>
+                        <p><br></p>
+                        <h2 class="mt-0">Compras Realizadas</h2>
                         <hr class="divider" />
-                        <h2 class="mt-0">Compras Realizadas:</h2>
-                        
                         {{#vacio}}
                         <p>No se ha realizado ninguna compra todavía</p>
                         {{/vacio}}
                         
                     {{^vacio}}
-                    <table>
+                    <table class="table table-light table-bordered">
 					  <tr>
 					    <th>Fecha</th>
 					    <th>Precio</th>

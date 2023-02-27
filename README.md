@@ -31,6 +31,6 @@ Envío de correo electrónico con la información de la compra realizada.
 # FASE 2
 ### Diagramas
 #### Diagrama de Navegación de la Aplicación Web
-  ![image](https://user-images.githubusercontent.com/58294628/221548909-0b86ccba-5bb7-4b56-a70d-e64b71ae03d6.png)
+  ![image](https://user-images.githubusercontent.com/58294628/221549188-7485bb4a-efbe-4d31-802b-8ef949701cc7.png)
 #### Diagrama Entidad/Relación con Atributos
-  ![image](https://user-images.githubusercontent.com/58294628/221546472-554c9ec2-f8f7-41bc-9c96-473f657ab4af.png)
+![image](https://user-images.githubusercontent.com/58294628/221549220-1b85aba0-1da8-4bf5-a3f2-6fac197bc7e7.png)

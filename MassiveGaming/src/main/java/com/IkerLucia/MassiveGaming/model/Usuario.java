@@ -31,7 +31,7 @@ public class Usuario {
 		this.apellido = apellido;
 		this.correo = correo;
 		this.clave = password;
-		this.carrito = new Carrito();
+		this.carrito = new Carrito(this);
 	}
 	
 	public long getId () {

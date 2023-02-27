@@ -16,10 +16,17 @@ public class Carrito {
 	
 	private Double precio;
 	
-	//puedo añadir un precio total que se calcule como la suma de los precios de los items
+	@OneToOne
+	private Usuario usuario;
 	
+	//puedo añadir un precio total que se calcule como la suma de los precios de los items
+	protected Carrito() {
+		
+	}
 	//Constructors
-	public Carrito() {
+	public Carrito(Usuario usuario) {
+		super();
+		this.usuario=usuario;
 		precio=0.0;
 	}
 	

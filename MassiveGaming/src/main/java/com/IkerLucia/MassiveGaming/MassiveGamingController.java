@@ -67,6 +67,7 @@ public class MassiveGamingController {
 	public String home(Model model) {
 		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
+		//Parte común de la nav bar
         if(userId == 0) {
         	//No se ha iniciado sesion
             model.addAttribute("mostrarPerfil",false);
@@ -80,6 +81,7 @@ public class MassiveGamingController {
 		userId=(long) 0;
 		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
+		//Parte común de la nav bar
         if(userId == 0) {
         	//No se ha iniciado sesion
             model.addAttribute("mostrarPerfil",false);
@@ -90,12 +92,25 @@ public class MassiveGamingController {
 	}
 	@GetMapping("/crearCuenta")
 	public String crearCuenta(Model model) {
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		return "crearCuenta";
 	}
 	
 	@GetMapping("/contacto")
 	public String contacto(Model model) {
-
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		return "contacto";
 	}
 	
@@ -103,7 +118,15 @@ public class MassiveGamingController {
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
 		//tecnicamente en esta pagina no se mete si no está logueado
-		//userId != 0
+		//es decir, userId != 0
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		Usuario user = usuarios.getById(userId);
 		
         model.addAttribute("NombreUser", user.getNombre());
@@ -123,6 +146,15 @@ public class MassiveGamingController {
 	
 	@PostMapping("/perfil/actualizado")
 	public  String UpdateUser(Model model, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String correo,@RequestParam String password) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		Usuario user = usuarios.getById(userId);
 		
 		model.addAttribute("idtemp", user.getId());
@@ -148,7 +180,16 @@ public class MassiveGamingController {
 	
 	@PostMapping("/inicioSesion")
     public String inicioSesion(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
-        List<Usuario> usu = usuarios.findByCorreo(correo);
+        
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
+		List<Usuario> usu = usuarios.findByCorreo(correo);
         if(usu.isEmpty()) {
             //No existe el correo utilizado
             model.addAttribute("texto","Error al iniciar sesión: no existe el correo utilizado");
@@ -162,7 +203,15 @@ public class MassiveGamingController {
             //guardamos el id del usuario en la sesion
             userId = usu.get(0).getId();
             
-            return "inicioSesion";
+          //Parte común de la nav bar
+    		if(userId == 0) {
+            	//No se ha iniciado sesion
+                model.addAttribute("mostrarPerfil",false);
+            }else {
+                model.addAttribute("mostrarPerfil",true);
+            }
+            
+            return "index";
         }else {
             //Contraseña incorrecta
             model.addAttribute("sesionIniciada",false);
@@ -173,18 +222,44 @@ public class MassiveGamingController {
 	
 	@GetMapping("/iniciarSesion")
     public String iniciarSesion(Model model) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }		
         model.addAttribute("texto","");
         return "inicioSesion";
     }
 	
 	@GetMapping("/videojuegos")
 	public String videojuegos(Model model) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
 		return "videojuegos";
 	}
 	@GetMapping("/videojuegos/{nombre}")
 	public String videojuegosConcreto(Model model, @PathVariable String nombre) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("juego",prod.get(0));
         if(userId != 0) {
@@ -198,6 +273,15 @@ public class MassiveGamingController {
 	}
 	@PostMapping("/videojuegos/{nombre}/valorado")
 	public String crearValoracion(Model model, @PathVariable String nombre, @RequestParam String texto) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("juego",prod.get(0));
 		model.addAttribute("sesionIniciada",false);
@@ -208,6 +292,15 @@ public class MassiveGamingController {
 	}
 	@PostMapping("/videojuegos/{nombre}/cestaActualizada")
 	public String addCesta(Model model, @PathVariable String nombre) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("juego",prod.get(0));
 		if(userId != 0) {
@@ -230,6 +323,15 @@ public class MassiveGamingController {
 	
 	@GetMapping("/consolas")
 	public String consolas(Model model) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		List<Consola> prod = consolas.findAll();
         model.addAttribute("productos",prod);
         
@@ -239,6 +341,15 @@ public class MassiveGamingController {
 	}
 	@GetMapping("/consolas/{nombre}")
 	public String consolasConcreto(Model model, @PathVariable String nombre) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("consola",prod.get(0));
 		
@@ -247,6 +358,14 @@ public class MassiveGamingController {
 	
 	@PostMapping("/cuentaCreada")
 	public String cuentaCreada(Model model,@RequestParam String usuario,@RequestParam String apellido,@RequestParam String correo,@RequestParam String clave) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		
 		List<Usuario> usu = usuarios.findByCorreo(correo);
 		if(usu.isEmpty()) {
@@ -260,6 +379,15 @@ public class MassiveGamingController {
 	}
 	@GetMapping("/carrito")
 	public String carrito(Model model) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		if(userId != 0) {
 			List<Item> listaItems = usuarios.getById(userId).getCarrito().getItems();
 			model.addAttribute("items",listaItems);
@@ -280,6 +408,15 @@ public class MassiveGamingController {
 	}
 	@PostMapping("/carritoVaciar")
 	public String carritoVaciar(Model model) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		if(userId != 0) {
 			Usuario usu = usuarios.getById(userId);
 			List<Item> listaItems = usu.getCarrito().getItems();
@@ -303,6 +440,15 @@ public class MassiveGamingController {
 	}
 	@PostMapping("/carritoComprar")
 	public String carritoComprar(Model model) {
+		
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
+		
 		if(userId != 0) {
 			Usuario usu = usuarios.getById(userId);
 			List<Item> listaItems = usu.getCarrito().getItems();

@@ -16,8 +16,6 @@ public class Carrito {
 	
 	private Double precio;
 	
-	//puedo añadir un precio total que se calcule como la suma de los precios de los items
-	
 	//Constructors
 	public Carrito() {
 		precio=0.0;

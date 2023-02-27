@@ -56,24 +56,36 @@
 						
 						{{#sesionIniciada}}
 						<form action= "/videojuegos/{{nombre}}/cestaActualizada" method ="post">
-						<p><input type='submit' value='Añadir a la cesta' </p>
+						<p><input type='submit' value='Añadir al carrito' </p>
 						</form>
 						{{/sesionIniciada}}
 						
 						{{#sesionIniciada}}
 						<form action="/videojuegos/{{nombre}}/valorado" method = "post">
-						<p align="center"><textarea input rows="10" cols="50" type='text' placeholder="Su opinión" name='texto' required/></textarea><p>
+						<p align="center"><textarea input rows="10" cols="50" type='text' style="border-radius: 8px;" placeholder="Su opinión..." name='texto' required/></textarea><p>
 						<p align="center"><input type='submit' value='Compartir'/></p>
 						</form>
 						{{/sesionIniciada}}
-						 <hr class="divider" />
                     </div>
-                    <h2 class="mt-0">Valoraciones de los usuarios</h2>
+                    
+					<p><br></p>
+                    <h2 align="center" class="mt-0">Valoraciones de los usuarios</h2>
+						<hr class="divider" />
+                    	{{#Nohayvaloraciones}}
+                    	<p>No hay valoraciones aún</p>
+                    	{{/Nohayvaloraciones}}
+                    	
                     	{{#valoraciones}}
-                    	<dl>
-						<dt>{{usuario.nombre}}:</dt>
-						<dd>{{texto}}</dd>
-						</dl
+                    	<div class="testimonial-box" style="border-radius: 8px;">
+                			<div class="box-top">
+		                    	<div class="name-user">
+								<strong>{{usuario.nombre}}</strong>
+								</div>
+							</div>
+								<div class="client-comment">
+								<p>{{texto}}</p>
+								</div>
+						</div>
 						{{/valoraciones}}
                 </div>
             </div>

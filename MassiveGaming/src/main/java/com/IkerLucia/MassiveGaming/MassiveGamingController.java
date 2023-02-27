@@ -391,6 +391,13 @@ public class MassiveGamingController {
 	}
 	@PostMapping("/videojuegos/{nombre}/cestaActualizadaD")
 	public String addCestaD(Model model, @PathVariable String nombre) {
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		if(!prod.get(0).getFisico_Digital()) {
 			model.addAttribute("versionFisico", true);
@@ -479,6 +486,13 @@ public class MassiveGamingController {
 	}
 	@PostMapping("/consolas/{nombre}/valorado")
 	public String crearValoracionConsola(Model model, @PathVariable String nombre, @RequestParam String texto) {
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		List<Consola> prod = consolas.findByNombre(nombre);
 		model.addAttribute("consola",prod.get(0));
 		model.addAttribute("sesionIniciada",true);
@@ -490,6 +504,13 @@ public class MassiveGamingController {
 	}
 	@PostMapping("/consolas/{nombre}/cestaActualizada/{color}")
 	public String addCestaConsola(Model model, @PathVariable String nombre,@PathVariable String color) {
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }
 		List<Consola> prod = consolas.findByNombre(nombre);
 		model.addAttribute("consola",prod.get(0));
 		if(userId != 0) {

@@ -1,4 +1,4 @@
-package com.IkerLucia.MassiveGaming;
+package com.IkerLucia.MassiveGaming.Controllers;
 
 import java.sql.Date;
 import java.text.DecimalFormat;

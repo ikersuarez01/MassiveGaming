@@ -50,7 +50,7 @@
             
 			 <h2 class="text-center fs-1 mt-0">Inicia sesion</h2>
              <hr class="divider" />
-             
+             <!--  
              <form action="inicioSesion" method="post">
 			
 			 <p align="center">Iniciar Sesion:</p>
@@ -66,7 +66,14 @@
 			 <p align="center"><br />{{texto}}</p>
 			
 			</form>
-	      
+	      	-->
+	      	<form action="/login" method="post">
+		        <label>User Name:</label><input type="text" name="username" /><br />
+		        <label>Password:</label><input type="password" name="password" /><br />
+		        <input type="hidden" name="_csrf" value="{{token}}"/>
+		        <input type="submit" value="Sign In" /><br />
+		    </form>
+	      	
         </section>
         
         

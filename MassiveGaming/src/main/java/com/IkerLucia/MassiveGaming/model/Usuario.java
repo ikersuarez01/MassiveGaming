@@ -9,12 +9,13 @@ import java.util.List;
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	private String nombre;
 	private String apellido;
 	@Column(unique=true)
 	private String correo;
+	private String correo1;
 	private String clave;
 	
 
@@ -30,11 +31,12 @@ public class Usuario {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
+		this.correo1 = correo;
 		this.clave = password;
 		this.carrito = new Carrito(this);
 	}
 	
-	public long getId () {
+	public Long getId () {
 		return id;
 	}
 	
@@ -65,4 +67,8 @@ public class Usuario {
 	public Carrito getCarrito() {
 		return carrito;
 	}
+	public String getCorreo1() {
+		return correo1;
+	}
+	
 }

@@ -1,4 +1,4 @@
-package com.IkerLucia.MassiveGaming;
+package com.IkerLucia.MassiveGaming.Controllers;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -90,6 +92,45 @@ public class SesionController{
         model.addAttribute("texto","");
         return "inicioSesion";
     }
+	
+	@GetMapping("/login")
+	public String login(Model model, HttpServletRequest request) {
+
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken()); 
+		 
+		userId = sesionActual.getId();
+		//Parte común de la nav bar
+		if(userId == 0) {
+        	//No se ha iniciado sesion
+            model.addAttribute("mostrarPerfil",false);
+        }else {
+            model.addAttribute("mostrarPerfil",true);
+        }		
+        model.addAttribute("texto","");
+
+		return "inicioSesion";
+	}
+	
+	@GetMapping("/loginerror")
+	public String loginerror() {
+		return "loginerror";
+	}
+
+	@GetMapping("/private")
+	public String privatePage(Model model, HttpServletRequest request) {
+
+		String correo = ((Usuario) request.getUserPrincipal()).getCorreo1();
+		
+		Usuario user = usuarios.findByCorreo1(correo).orElseThrow();
+
+		model.addAttribute("correo", user.getCorreo());		
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf"); 
+	    model.addAttribute("token", token.getToken());   
+
+		return "private";
+	}
 
 	@GetMapping("/crearCuenta")
 	public String crearCuenta(Model model) {

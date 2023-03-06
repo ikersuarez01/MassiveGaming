@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>	
+	<h1>Hello  {{correo}}!</h1>
+	<p>This is a private page</p>
+	
+	<br>
+	<br>
+	
+	<form action="/logout" method="post">
+		<input type="hidden" name="_csrf" value="{{token}}"/>
+		<input type="submit" value="Sign Out" />
+	</form>
+</body>
+</html>

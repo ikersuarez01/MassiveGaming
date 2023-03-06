@@ -1,27 +1,14 @@
-package com.IkerLucia.MassiveGaming;
+package com.IkerLucia.MassiveGaming.Controllers;
 
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.IkerLucia.MassiveGaming.model.*;
 import com.IkerLucia.MassiveGaming.repository.*;
 
@@ -45,12 +32,15 @@ public class MassiveGamingController {
 	private ItemRepository items;
 	
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private SesionActual sesionActual;
 	
 	@PostConstruct
 	public void init() {
 		//Creación de datos de la base de datos
-		usuarios.save(new Usuario("Lucia", "Molinero", "lucia@gmail.com", "1234"));
+		usuarios.save(new Usuario("Lucia", "Molinero", "lucia@gmail.com", passwordEncoder.encode("1234")));
         usuarios.save(new Usuario("Iker", "Suarez", "iker@gmail.com", "1234"));
         usuarios.save(new Usuario("Raul", "Llona", "raul@gmail.com", "starwars"));
         usuarios.save(new Usuario("Juan", "De Carlos", "juan@gmail.com", "mariobros4life"));
@@ -82,7 +72,7 @@ public class MassiveGamingController {
 	}
 	
 	@GetMapping("/MassiveGaming")
-	public String home(Model model) {
+	public String home(Model model, HttpServletRequest request) {
 		userId = sesionActual.getId();
 		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);

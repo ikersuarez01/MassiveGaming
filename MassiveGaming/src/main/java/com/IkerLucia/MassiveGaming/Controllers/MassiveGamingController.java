@@ -93,13 +93,7 @@ public class MassiveGamingController {
 		userId = sesionActual.getId();
 		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
-		//Parte común de la nav bar
-        if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+        
 		return "index";
 	}
 	@GetMapping("/MassiveGamingC")
@@ -108,26 +102,11 @@ public class MassiveGamingController {
 		sesionActual.SetId(userId);
 		List<Videojuego> prod = videojuegos.findAll();
         model.addAttribute("productos",prod);
-		//Parte común de la nav bar
-        if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		return "index";
 	}
 	
 	@GetMapping("/contacto")
 	public String contacto(Model model) {
-		userId = sesionActual.getId();
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		return "contacto";
 	}
 	

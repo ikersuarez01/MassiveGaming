@@ -1,5 +1,6 @@
 package com.IkerLucia.MassiveGaming.Controllers;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,18 +40,24 @@ public class PerfilController{
 	@Autowired
 	private SesionActual sesionActual;
 	
+	
+	@ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+
+        Principal principal = request.getUserPrincipal();
+
+        if (principal != null) {
+            List<Usuario> usu = usuarios.findByCorreo(principal.getName());
+            userId = usu.get(0).getId();
+            model.addAttribute("mostrarPerfil",true);
+        } else {
+            model.addAttribute("mostrarPerfil",false);
+        }
+    }
+	
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
-		//tecnicamente en esta pagina no se mete si no está logueado
-		//es decir, userId != 0
-		userId = sesionActual.getId();
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+
 		Usuario user = usuarios.getById(userId);
 		
         model.addAttribute("NombreUser", user.getNombre());
@@ -68,14 +77,7 @@ public class PerfilController{
 	
 	@PostMapping("/perfil/actualizado")
 	public  String UpdateUser(Model model, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String correo,@RequestParam String password) {
-		
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+
 		
 		Usuario user = usuarios.getById(userId);
 		

@@ -59,6 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // Private pages (all other pages)
         http.authorizeRequests().anyRequest().authenticated();
+        //http.authorizeRequests().antMatchers("/videojuegos/{nombre}/valorado").hasAnyRole("USER");
 
         // Login form
         http.formLogin().loginPage("/login");
@@ -68,7 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.formLogin().failureUrl("/loginerror");
 
         // Logout
-        http.logout().logoutUrl("/logout");
+        http.logout().logoutUrl("/MassiveGamingC");
         http.logout().logoutSuccessUrl("/MassiveGamingC");
 
     }

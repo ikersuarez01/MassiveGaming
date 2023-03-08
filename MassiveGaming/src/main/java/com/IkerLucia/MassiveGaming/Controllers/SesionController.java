@@ -1,5 +1,6 @@
 package com.IkerLucia.MassiveGaming.Controllers;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,16 +38,22 @@ public class SesionController{
 	@Autowired
 	private UsuarioRepository usuarios;
 	
+	@ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+
+        Principal principal = request.getUserPrincipal();
+
+        if (principal != null) {
+            List<Usuario> usu = usuarios.findByCorreo(principal.getName());
+            userId = usu.get(0).getId();
+            model.addAttribute("mostrarPerfil",true);
+        } else {
+            model.addAttribute("mostrarPerfil",false);
+        }
+    }
+	
 	@PostMapping("/inicioSesionError")
     public String inicioSesionError(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
-        
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		
 		List<Usuario> usu = usuarios.findByCorreo(correo);
         if(usu.isEmpty()) {
@@ -80,15 +88,7 @@ public class SesionController{
     }
 	
 	@RequestMapping("/iniciarSesion")
-    public String iniciarSesion(Model model) {
-		userId = sesionActual.getId();
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }		
+    public String iniciarSesion(Model model) {		
         model.addAttribute("texto","");
         return "inicioSesion";
     }
@@ -121,26 +121,11 @@ public class SesionController{
 
 	@GetMapping("/crearCuenta")
 	public String crearCuenta(Model model) {
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		return "crearCuenta";
 	}
 	
 	@PostMapping("/cuentaCreada")
 	public String cuentaCreada(Model model,@RequestParam String usuario,@RequestParam String apellido,@RequestParam String correo,@RequestParam String clave) {
-		
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		
 		List<Usuario> usu = usuarios.findByCorreo(correo);
 		if(usu.isEmpty()) {

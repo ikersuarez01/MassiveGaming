@@ -1,5 +1,6 @@
 package com.IkerLucia.MassiveGaming.Controllers;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,16 +45,22 @@ public class ProductosController{
 	@Autowired
 	private SesionActual sesionActual;
 
+	@ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+
+        Principal principal = request.getUserPrincipal();
+
+        if (principal != null) {
+            List<Usuario> usu = usuarios.findByCorreo(principal.getName());
+            userId = usu.get(0).getId();
+            model.addAttribute("mostrarPerfil",true);
+        } else {
+            model.addAttribute("mostrarPerfil",false);
+        }
+    }
+	
 	@GetMapping("/videojuegos")
 	public String videojuegos(Model model) {
-		userId = sesionActual.getId();
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		
 		List<Videojuego> prod = videojuegos.findAll();
 		List<String> nombres = new ArrayList<String>();
@@ -68,13 +77,6 @@ public class ProductosController{
 	@GetMapping("/videojuegos/{nombre}")
 	public String videojuegosConcreto(Model model, @PathVariable String nombre) {
 		
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		model.addAttribute("juego",prod.get(0));
@@ -107,13 +109,6 @@ public class ProductosController{
 	@PostMapping("/videojuegos/{nombre}/valorado")
 	public String crearValoracion(Model model, @PathVariable String nombre, @RequestParam String texto) {
 		
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		if(!prod.get(0).getFisico_Digital()) {
@@ -137,13 +132,7 @@ public class ProductosController{
 	}
 	@PostMapping("/videojuegos/{nombre}/cestaActualizadaF")
 	public String addCestaF(Model model, @PathVariable String nombre) {
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+		
 		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		if(!prod.get(0).getFisico_Digital()) {
@@ -182,13 +171,7 @@ public class ProductosController{
 	}
 	@PostMapping("/videojuegos/{nombre}/cestaActualizadaD")
 	public String addCestaD(Model model, @PathVariable String nombre) {
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		if(!prod.get(0).getFisico_Digital()) {
 			model.addAttribute("versionFisico", true);
@@ -227,14 +210,6 @@ public class ProductosController{
 	
 	@GetMapping("/consolas")
 	public String consolas(Model model) {
-		userId = sesionActual.getId();
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
 		
 		List<Consola> prod = consolas.findAll();
 		List<String> nombres = new ArrayList<String>();
@@ -251,13 +226,7 @@ public class ProductosController{
 	}
 	@GetMapping("/consolas/{nombre}")
 	public String consolasConcreto(Model model, @PathVariable String nombre) {
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+
 		List<Consola> prod = consolas.findByNombre(nombre);
 		model.addAttribute("consola",prod.get(0));
         if(userId != 0) {
@@ -277,13 +246,7 @@ public class ProductosController{
 	}
 	@PostMapping("/consolas/{nombre}/valorado")
 	public String crearValoracionConsola(Model model, @PathVariable String nombre, @RequestParam String texto) {
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+
 		List<Consola> prod = consolas.findByNombre(nombre);
 		model.addAttribute("consola",prod.get(0));
 		model.addAttribute("sesionIniciada",true);
@@ -295,13 +258,7 @@ public class ProductosController{
 	}
 	@PostMapping("/consolas/{nombre}/cestaActualizada/{color}")
 	public String addCestaConsola(Model model, @PathVariable String nombre,@PathVariable String color) {
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }
+
 		List<Consola> prod = consolas.findByNombre(nombre);
 		model.addAttribute("consola",prod.get(0));
 		if(userId != 0) {

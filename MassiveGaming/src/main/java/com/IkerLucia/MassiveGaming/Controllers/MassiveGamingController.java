@@ -1,5 +1,6 @@
 package com.IkerLucia.MassiveGaming.Controllers;
 
+import java.security.Principal;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import com.IkerLucia.MassiveGaming.model.*;
 import com.IkerLucia.MassiveGaming.repository.*;
 
@@ -70,6 +73,20 @@ public class MassiveGamingController {
         valoraciones.save(new Valoracion(videojuegos.findByNombre("Mario Kart 8 Deluxe").get(0), usuarios.findByNombre("Raul").get(0),"¡Super divertido!"));
         valoraciones.save(new Valoracion(videojuegos.findByNombre("Mario Kart 8 Deluxe").get(0), usuarios.findByNombre("Juan").get(0),"Este juego es mi vida"));
 	}
+	
+	@ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+
+        Principal principal = request.getUserPrincipal();
+
+        if (principal != null) {
+            List<Usuario> usu = usuarios.findByCorreo(principal.getName());
+            userId = usu.get(0).getId();
+            model.addAttribute("mostrarPerfil",true);
+        } else {
+            model.addAttribute("mostrarPerfil",false);
+        }
+    }
 	
 	@GetMapping("/MassiveGaming")
 	public String home(Model model, HttpServletRequest request) {

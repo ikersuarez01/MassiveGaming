@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/videojuegos/{nombre}").permitAll();
         http.authorizeRequests().antMatchers("/consolas").permitAll();
         http.authorizeRequests().antMatchers("/consolas/{nombre}").permitAll();
-        http.authorizeRequests().antMatchers("/inicioSesion").permitAll();
+        http.authorizeRequests().antMatchers("/inicioSesionError").permitAll();
         http.authorizeRequests().antMatchers("/iniciarSesion").permitAll();
         http.authorizeRequests().antMatchers("/crearCuenta").permitAll();
         http.authorizeRequests().antMatchers("/cuentaCreada").permitAll();
@@ -61,9 +61,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().anyRequest().authenticated();
 
         // Login form
-        http.formLogin().loginPage("/iniciarSesion");
-        http.formLogin().usernameParameter("correo");
-        http.formLogin().passwordParameter("clave");
+        http.formLogin().loginPage("/login");
+        http.formLogin().usernameParameter("username");
+        http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/MassiveGaming");
         http.formLogin().failureUrl("/loginerror");
 

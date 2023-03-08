@@ -36,8 +36,8 @@ public class SesionController{
 	@Autowired
 	private UsuarioRepository usuarios;
 	
-	@PostMapping("/inicioSesion")
-    public String inicioSesion(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
+	@PostMapping("/inicioSesionError")
+    public String inicioSesionError(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
         
 		//Parte común de la nav bar
 		if(userId == 0) {
@@ -79,7 +79,7 @@ public class SesionController{
         }
     }
 	
-	@GetMapping("/iniciarSesion")
+	@RequestMapping("/iniciarSesion")
     public String iniciarSesion(Model model) {
 		userId = sesionActual.getId();
 		//Parte común de la nav bar
@@ -93,26 +93,13 @@ public class SesionController{
         return "inicioSesion";
     }
 	
-	@GetMapping("/login")
-	public String login(Model model, HttpServletRequest request) {
-
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		model.addAttribute("token", token.getToken()); 
-		 
-		userId = sesionActual.getId();
-		//Parte común de la nav bar
-		if(userId == 0) {
-        	//No se ha iniciado sesion
-            model.addAttribute("mostrarPerfil",false);
-        }else {
-            model.addAttribute("mostrarPerfil",true);
-        }		
-        model.addAttribute("texto","");
-
-		return "inicioSesion";
+	@RequestMapping("/login")
+	public String login(Model model) {
+			
+		return "login";
 	}
 	
-	@GetMapping("/loginerror")
+	@RequestMapping("/loginerror")
 	public String loginerror() {
 		return "loginerror";
 	}

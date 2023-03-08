@@ -21,10 +21,16 @@ public class RepositoryUserDetailsService implements UserDetailsService {
  @Autowired
  private UsuarioRepository userRepository;
  
- @Override
+@Override
  public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
-	 Usuario user = userRepository.findByCorreo1(correo).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-	 GrantedAuthority role = new SimpleGrantedAuthority("ROLE_USER");
-	 return new org.springframework.security.core.userdetails.User(user.getCorreo(), user.getPassword(), (Collection<? extends GrantedAuthority>) role);
+//	 Usuario user = userRepository.findByCorreo1(correo).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+	List<Usuario> user = userRepository.findByCorreo(correo);
+	List<GrantedAuthority> roles = new ArrayList<>();
+	roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+	if(user.isEmpty()) 
+		new UsernameNotFoundException("User not found");
+		
+	return new org.springframework.security.core.userdetails.User(user.get(0).getCorreo(), user.get(0).getPassword(), roles);
+
  }
 }

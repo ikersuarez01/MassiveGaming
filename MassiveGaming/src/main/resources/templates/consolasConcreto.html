@@ -61,6 +61,7 @@
 						{{#color}}
 						<form action= "/consolas/{{nombre}}/cestaActualizada/{{color}}" method ="post">
 						<p><input type='submit' value='Añadir a la cesta (Color: {{color}})' </p>
+						<input type="hidden" name="_csrf" value="{{token}}"/>
 						</form>
 						{{/color}}
 						{{/sesionIniciada}}
@@ -69,6 +70,7 @@
 						<form action="/consolas/{{nombre}}/valorado" method = "post">
 						<p align="center"><textarea input rows="10" cols="50" type='text'style="border-radius: 8px;" placeholder="Su opinión" name='texto' required/></textarea><p>
 						<p align="center"><input type='submit' value='Compartir'/></p>
+						<input type="hidden" name="_csrf" value="{{token}}"/>
 						</form>
 						{{/sesionIniciada}}
 						 <hr class="divider" />

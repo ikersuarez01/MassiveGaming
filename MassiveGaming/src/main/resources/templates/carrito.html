@@ -64,10 +64,12 @@
 						
 						<form action= "/carritoComprar" method ="post">
 						<p><input type='submit' value='Comprar' </p>
+						<input type="hidden" name="_csrf" value="{{token}}"/>
 						</form>
 						
 						<form action= "/carritoVaciar" method ="post">
 						<p><input type='submit' value='Vaciar Cesta' </p>
+						<input type="hidden" name="_csrf" value="{{token}}"/>
 						</form>
 						{{/vacio}}
 						

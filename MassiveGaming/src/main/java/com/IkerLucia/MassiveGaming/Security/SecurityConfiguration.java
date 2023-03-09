@@ -55,9 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/cuentaCreada").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
         http.authorizeRequests().antMatchers("/loginerror").permitAll();
-
         // Private pages (all other pages)
         http.authorizeRequests().anyRequest().authenticated();
+        
         
 
         // Login form

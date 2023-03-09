@@ -108,7 +108,7 @@ public class ProductosController{
 	}
 	@PostMapping("/videojuegos/{nombre}/valorado")
 	public String crearValoracion(Model model, @PathVariable String nombre, @RequestParam String texto) {
-		
+		System.out.println("AJJAJAJA");
 		
 		List<Videojuego> prod = videojuegos.findByNombre(nombre);
 		if(!prod.get(0).getFisico_Digital()) {

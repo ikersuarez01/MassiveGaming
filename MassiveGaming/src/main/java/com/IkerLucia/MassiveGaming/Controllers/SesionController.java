@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,8 @@ public class SesionController{
 	private SesionActual sesionActual;
 	@Autowired
 	private UsuarioRepository usuarios;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {
@@ -94,7 +97,7 @@ public class SesionController{
         return "inicioSesion";
     }
 	
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	public String login(Model model) {
 			
 		return "login";
@@ -110,7 +113,7 @@ public class SesionController{
 		
 		List<Usuario> usu = usuarios.findByCorreo(correo);
 		if(usu.isEmpty()) {
-			usuarios.save(new Usuario(usuario,apellido,correo,clave));
+			usuarios.save(new Usuario(usuario,apellido,correo,passwordEncoder.encode(clave)));
 			model.addAttribute("guardado", true);
 		}else {
 			model.addAttribute("guardado", false);

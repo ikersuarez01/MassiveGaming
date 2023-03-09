@@ -36,6 +36,9 @@ public class SesionController{
 	public Long userId = (long) 0;
 
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
 	private SesionActual sesionActual;
 	@Autowired
 	private UsuarioRepository usuarios;
@@ -56,51 +59,15 @@ public class SesionController{
         }
     }
 	
-	@PostMapping("/inicioSesionError")
-    public String inicioSesionError(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
-		
-		List<Usuario> usu = usuarios.findByCorreo(correo);
-        if(usu.isEmpty()) {
-            //No existe el correo utilizado
-            model.addAttribute("texto","Error al iniciar sesión: no existe el correo utilizado");
-            return "inicioSesion";
-        }
-        if(usu.get(0).getPassword().equals(clave)) {
-            //Sesion incio correcto
-            model.addAttribute("sesionIniciada",true);
-            model.addAttribute("texto","Sesión iniciada correctamente");
-            
-            //guardamos el id del usuario en la sesion
-            userId = usu.get(0).getId();
-            
-            sesionActual.SetId(userId);
-          //Parte común de la nav bar
-    		if(userId == 0) {
-            	//No se ha iniciado sesion
-                model.addAttribute("mostrarPerfil",false);
-            }else {
-                model.addAttribute("mostrarPerfil",true);
-            }
-            
-            return "index";
-        }else {
-            //Contraseña incorrecta
-            model.addAttribute("sesionIniciada",false);
-            model.addAttribute("texto","Error al iniciar sesión: contraseña incorrecta");
-            return "inicioSesion";
-        }
-    }
-	
-	@RequestMapping("/iniciarSesion")
-    public String iniciarSesion(Model model) {		
-        model.addAttribute("texto","");
-        return "inicioSesion";
-    }
-	
 	@GetMapping("/login")
 	public String login(Model model) {
 			
 		return "login";
+	}
+	@RequestMapping("/loginerror")
+	public String loginerror(Model model) {
+			
+		return "loginerror";
 	}
 
 	@GetMapping("/crearCuenta")

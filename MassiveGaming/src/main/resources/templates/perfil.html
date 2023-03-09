@@ -58,16 +58,17 @@
                         
                         <form action="/perfil/actualizado" method="post">
                         
-                        <p>Nombre</p>
-           				<p align="center"><input type='text' placeholder="{{NombreUser}}" name='nombre'/><p>
-           				<p>Apellido</p>
-           				<p align="center"><input type='text' placeholder="{{ApellidoUser}}" name='apellido'/><p>
-           				<p>Correo</p>
-           				<p align="center"><input type='text' placeholder="{{CorreoUser}}" name='correo'/><p>
-                        <p>Contraseña</p>
-           				<p align="center"><input type='password' name='password'/><p>
-           				
-						<p align="center"><input type='submit' value='Actualizar Datos'/></p>
+	                        <p>Nombre</p>
+	           				<p align="center"><input type='text' placeholder="{{NombreUser}}" name='nombre'/><p>
+	           				<p>Apellido</p>
+	           				<p align="center"><input type='text' placeholder="{{ApellidoUser}}" name='apellido'/><p>
+	           				<p>Correo</p>
+	           				<p align="center"><input type='text' placeholder="{{CorreoUser}}" name='correo'/><p>
+	                        <p>Contraseña</p>
+	           				<p align="center"><input type='password' name='password'/><p>
+	           				
+							<p align="center"><input type='submit' value='Actualizar Datos'/></p>
+					        <input type="hidden" name="_csrf" value="{{token}}"/>
            				
             			</form>
                         <p><br></p>
@@ -116,8 +117,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- SimpleLightbox plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

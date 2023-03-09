@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,9 @@ public class SesionController{
 	public Long userId = (long) 0;
 
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
 	private SesionActual sesionActual;
 	@Autowired
 	private UsuarioRepository usuarios;
@@ -53,51 +57,15 @@ public class SesionController{
         }
     }
 	
-	@PostMapping("/inicioSesionError")
-    public String inicioSesionError(Model model, @RequestParam(required=false) String correo, @RequestParam(required=false) String clave) {
-		
-		List<Usuario> usu = usuarios.findByCorreo(correo);
-        if(usu.isEmpty()) {
-            //No existe el correo utilizado
-            model.addAttribute("texto","Error al iniciar sesión: no existe el correo utilizado");
-            return "inicioSesion";
-        }
-        if(usu.get(0).getPassword().equals(clave)) {
-            //Sesion incio correcto
-            model.addAttribute("sesionIniciada",true);
-            model.addAttribute("texto","Sesión iniciada correctamente");
-            
-            //guardamos el id del usuario en la sesion
-            userId = usu.get(0).getId();
-            
-            sesionActual.SetId(userId);
-          //Parte común de la nav bar
-    		if(userId == 0) {
-            	//No se ha iniciado sesion
-                model.addAttribute("mostrarPerfil",false);
-            }else {
-                model.addAttribute("mostrarPerfil",true);
-            }
-            
-            return "index";
-        }else {
-            //Contraseña incorrecta
-            model.addAttribute("sesionIniciada",false);
-            model.addAttribute("texto","Error al iniciar sesión: contraseña incorrecta");
-            return "inicioSesion";
-        }
-    }
-	
-	@RequestMapping("/iniciarSesion")
-    public String iniciarSesion(Model model) {		
-        model.addAttribute("texto","");
-        return "inicioSesion";
-    }
-	
 	@RequestMapping("/login")
 	public String login(Model model) {
 			
 		return "login";
+	}
+	@RequestMapping("/loginerror")
+	public String loginerror(Model model) {
+			
+		return "loginerror";
 	}
 
 	@GetMapping("/crearCuenta")
@@ -110,7 +78,7 @@ public class SesionController{
 		
 		List<Usuario> usu = usuarios.findByCorreo(correo);
 		if(usu.isEmpty()) {
-			usuarios.save(new Usuario(usuario,apellido,correo,clave));
+			usuarios.save(new Usuario(usuario,apellido,correo,passwordEncoder.encode(clave)));
 			model.addAttribute("guardado", true);
 		}else {
 			model.addAttribute("guardado", false);

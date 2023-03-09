@@ -33,10 +33,10 @@ public class DatabaseInitializer {
 	public void init() {
 				
 		//USUARIOS
-		usuarios.save(new Usuario("Lucia", "Molinero", "lucia@gmail.com", passwordEncoder.encode("1234")));
-        usuarios.save(new Usuario("Iker", "Suarez", "iker@gmail.com", "1234"));
-        usuarios.save(new Usuario("Raul", "Llona", "raul@gmail.com", "starwars"));
-        usuarios.save(new Usuario("Juan", "De Carlos", "juan@gmail.com", "mariobros4life"));
+		usuarios.save(new Usuario("Lucia", "Molinero", "l.molinero.2019@alumnos.urjc.es", passwordEncoder.encode("1234")));
+        usuarios.save(new Usuario("Iker", "Suarez", "iker@gmail.com", passwordEncoder.encode("1234")));
+        usuarios.save(new Usuario("Raul", "Llona", "r.llona.2019@alumnos.urjc.es", passwordEncoder.encode("starwars")));
+        usuarios.save(new Usuario("Juan", "De Carlos", "juan@gmail.com", passwordEncoder.encode("mariobros4life")));
 
         //VIDEOJUEGOS
         videojuegos.save(new Videojuego("Cult of the lamb", 22.99, true));

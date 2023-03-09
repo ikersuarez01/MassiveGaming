@@ -29,10 +29,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        //PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-        //String encodedPassword = encoder.encode("Tapatapita123");
-
         auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
       
     }

@@ -31,12 +31,15 @@
                         <li class="nav-item"><a class="nav-link fs-5" href="/consolas">Consolas</a></li>
                         <li class="nav-item"><a class="nav-link fs-5" href="/contacto">Contacto</a></li>
                         {{^mostrarPerfil}}
-                        <li class="nav-item"><a class="nav-link fs-5" href="/iniciarSesion">Iniciar Sesion</a></li>
+                        <li class="nav-item"><a class="nav-link fs-5" href="/login">Iniciar Sesion</a></li>
                         {{/mostrarPerfil}}
                         {{#mostrarPerfil}}
                         <li class="nav-item"><a class="nav-link fs-5" href="/perfil">Perfil</a></li>
                         <li class="nav-item"><a class="nav-link fs-5" href="/carrito">Carrito</a></li>
-                        <li class="nav-item"><a class="nav-link fs-5" href="/MassiveGamingC">Cerrar Sesión</a></li>
+                        <form action="/logout" method="post">
+                            <li class="nav-item"><button class="nav-link fs-5">Cerrar Sesión</button></li>
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                        </form>
                         {{/mostrarPerfil}}
                     </ul>
                 </div>

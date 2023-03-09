@@ -37,9 +37,6 @@ public class PerfilController{
 	@Autowired
 	private CompraRepository compras;
 	
-	@Autowired
-	private SesionActual sesionActual;
-	
 	
 	@ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {

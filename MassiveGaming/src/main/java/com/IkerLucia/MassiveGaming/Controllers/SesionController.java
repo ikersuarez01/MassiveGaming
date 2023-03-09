@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,26 +98,6 @@ public class SesionController{
 	public String login(Model model) {
 			
 		return "login";
-	}
-	
-	@RequestMapping("/loginerror")
-	public String loginerror() {
-		return "loginerror";
-	}
-
-	@GetMapping("/private")
-	public String privatePage(Model model, HttpServletRequest request) {
-
-		String correo = ((Usuario) request.getUserPrincipal()).getCorreo1();
-		
-		Usuario user = usuarios.findByCorreo1(correo).orElseThrow();
-
-		model.addAttribute("correo", user.getCorreo());		
-		
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf"); 
-	    model.addAttribute("token", token.getToken());   
-
-		return "private";
 	}
 
 	@GetMapping("/crearCuenta")

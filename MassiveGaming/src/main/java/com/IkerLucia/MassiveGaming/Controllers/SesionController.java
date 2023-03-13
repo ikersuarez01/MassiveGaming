@@ -42,8 +42,6 @@ public class SesionController{
 	private SesionActual sesionActual;
 	@Autowired
 	private UsuarioRepository usuarios;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
 	@ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {

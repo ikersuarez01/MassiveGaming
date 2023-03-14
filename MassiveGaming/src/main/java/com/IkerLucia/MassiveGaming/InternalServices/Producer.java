@@ -1,25 +1,26 @@
 package com.IkerLucia.MassiveGaming.InternalServices;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 
 @Component
 public class Producer {
 
-	@Autowired
-	RabbitTemplate rabbitTemplate;
+	private final static String QUEUE_NAME = "hello";
 	
-	private int numData;
+	public void send() throws Exception {
 
-	@Scheduled(fixedRate = 1000)
-	public void sendMessage() {
-		
-		String data = "Data " + numData++;
-		
-		System.out.println("publishToQueue: '" + data + "'");
-				
-		rabbitTemplate.convertAndSend("messages", data);
+		ConnectionFactory factory = new ConnectionFactory();
+		factory.setHost("localhost");
+		try (Connection connection = factory.newConnection();
+		    Channel channel = connection.createChannel()) {
+			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+			String message = "Hello World!";
+			channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+			System.out.println(" [x] Sent '" + message + "'");
+		}
 	}
 }

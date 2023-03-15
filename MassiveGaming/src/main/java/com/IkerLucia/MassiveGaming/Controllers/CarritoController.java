@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,8 @@ public class CarritoController {
 	private UsuarioRepository usuarios;
 	@Autowired
 	private CompraRepository compras;
-	
+	@Autowired
+    private Producer producer;
 	
 	@Autowired
 	private SesionActual sesionActual;
@@ -103,7 +105,7 @@ public class CarritoController {
 	}
 	@PostMapping("/carritoComprar")
 	public String carritoComprar(Model model) {
-		
+		producer.send();
 		if(userId != 0) {
 			Usuario usu = usuarios.getById(userId);
 			List<Item> listaItems = usu.getCarrito().getItems();

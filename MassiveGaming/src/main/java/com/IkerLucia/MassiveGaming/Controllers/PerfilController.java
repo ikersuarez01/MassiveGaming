@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.IkerLucia.MassiveGaming.InternalServices.Producer;
 import com.IkerLucia.MassiveGaming.model.*;
 import com.IkerLucia.MassiveGaming.repository.*;
 
@@ -39,7 +40,8 @@ public class PerfilController{
 	private CompraRepository compras;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+	@Autowired
+	private Producer producer;
 	
 	@ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {
@@ -103,7 +105,7 @@ public class PerfilController{
         }else {
         	model.addAttribute("vacio", false);
         }
-
+        producer.sendDatosModificados(user);
 		return "perfil";
 	}
 }

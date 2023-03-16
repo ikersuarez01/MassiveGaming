@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.IkerLucia.MassiveGaming.InternalServices.Producer;
 import com.IkerLucia.MassiveGaming.model.*;
 import com.IkerLucia.MassiveGaming.repository.*;
 
@@ -42,6 +43,8 @@ public class SesionController{
 	private SesionActual sesionActual;
 	@Autowired
 	private UsuarioRepository usuarios;
+	@Autowired
+	private Producer producer;
 	
 	@ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {
@@ -79,6 +82,7 @@ public class SesionController{
 		List<Usuario> usu = usuarios.findByCorreo(correo);
 		if(usu.isEmpty()) {
 			usuarios.save(new Usuario(usuario,apellido,correo,passwordEncoder.encode(clave)));
+			producer.sendNuevaCuenta(new Usuario(usuario,apellido,correo,passwordEncoder.encode(clave)));
 			model.addAttribute("guardado", true);
 		}else {
 			model.addAttribute("guardado", false);

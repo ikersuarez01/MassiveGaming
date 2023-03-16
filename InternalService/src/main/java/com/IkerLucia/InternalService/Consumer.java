@@ -9,7 +9,7 @@ public class Consumer {
 	@Autowired
 	EmailSenderService emailService;
 	
-	@RabbitListener(queues = "compras", ackMode = "AUTO")
+	@RabbitListener(queues = "mensajes", ackMode = "AUTO")
 	public void recv (String message){
 		//Mensaje mens = (Mensaje)SerializationUtils.deserialize(message);
 		String parts[] = message.split("//");

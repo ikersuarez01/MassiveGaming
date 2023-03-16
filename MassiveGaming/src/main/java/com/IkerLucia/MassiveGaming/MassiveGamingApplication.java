@@ -16,6 +16,6 @@ public class MassiveGamingApplication {
 
 	@Bean
 	public Queue myQueue() {
-    	return new Queue("messages", false);
+    	return new Queue("mensajes", false);
 	}
 }

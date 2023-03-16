@@ -34,7 +34,7 @@ public class DatabaseInitializer {
 				
 		//USUARIOS
 		usuarios.save(new Usuario("Lucia", "Molinero", "l.molinero.2019@alumnos.urjc.es", passwordEncoder.encode("1234")));
-        usuarios.save(new Usuario("Iker", "Suarez", "iker@gmail.com", passwordEncoder.encode("1234")));
+        usuarios.save(new Usuario("Iker", "Suarez", "ikersuarez01@gmail.com", passwordEncoder.encode("1234")));
         usuarios.save(new Usuario("Raul", "Llona", "r.llona.2019@alumnos.urjc.es", passwordEncoder.encode("starwars")));
         usuarios.save(new Usuario("Juan", "De Carlos", "juan@gmail.com", passwordEncoder.encode("mariobros4life")));
 

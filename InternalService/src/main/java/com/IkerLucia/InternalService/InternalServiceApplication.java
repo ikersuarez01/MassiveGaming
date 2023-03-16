@@ -15,6 +15,6 @@ public class InternalServiceApplication {
 	}
 	@Bean
 	public Queue myQueue() {
-    	return new Queue("compras", false);
+    	return new Queue("mensajes", false);
 	}
 }

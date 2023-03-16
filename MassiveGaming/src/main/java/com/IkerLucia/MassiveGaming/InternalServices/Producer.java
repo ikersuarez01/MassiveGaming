@@ -22,9 +22,10 @@ public class Producer {
         String email = "ikersuarez01@gmail.com";
         String asunto = "Compra realizada";
         String texto = "Usted ha realizado correctamente una compra en Massive Gaming por " + precio.toString()+ "€";
-        Mensaje mens = new Mensaje(email,asunto,texto);
-        byte[] data = SerializationUtils.serialize(mens);
-        rabbitTemplate.convertAndSend("compras", data);
+        //Mensaje mens = new Mensaje(email,asunto,texto);
+        //byte[] data = SerializationUtils.serialize(mens);
+        String allTogether = email + "//" + asunto + "//" + texto;
+        rabbitTemplate.convertAndSend("compras", allTogether);
         System.out.println("Mensaje Enviado");
 	}
 

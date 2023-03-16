@@ -105,7 +105,7 @@ public class CarritoController {
 	}
 	@PostMapping("/carritoComprar")
 	public String carritoComprar(Model model) {
-		producer.send();
+		
 		if(userId != 0) {
 			Usuario usu = usuarios.getById(userId);
 			List<Item> listaItems = usu.getCarrito().getItems();
@@ -119,6 +119,7 @@ public class CarritoController {
 			usuarios.save(usu);
 			listaItems = usuarios.getById(userId).getCarrito().getItems();
 			model.addAttribute("items",listaItems);
+			producer.sendCompra(usu.getCorreo(),nuevaCompra.getPrecio());
 			if(listaItems.isEmpty()) {
 				model.addAttribute("vacio", true);
 				model.addAttribute("textoVacio","Compra realizada correctamente");
@@ -131,7 +132,6 @@ public class CarritoController {
 		}else {
 			model.addAttribute("items","");
 		}	
-			
 		return "carrito";
 	}
 }

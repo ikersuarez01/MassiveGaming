@@ -18,10 +18,9 @@ public class Consumer {
 	@Autowired
 	EmailSenderService emailService;
 	@RabbitListener(queues = "compras", ackMode = "AUTO")
-	public void recv (String message){
-		//Mensaje mens = (Mensaje)SerializationUtils.deserialize(message);
-		
+	public void recv (byte[] data){
+		Mensaje mens = (Mensaje)SerializationUtils.deserialize(data);
 		//emailService.sendSimpleEmail("ikersuarez01@gmail.com", "prueba", "eres la ostia");
-		//System.out.println("Mensaje recibido: " + mens);
+		System.out.println("Mensaje recibido: ");
 	}
 }

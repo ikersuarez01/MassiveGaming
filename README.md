@@ -29,9 +29,8 @@ Entidades:
 
 Funcionalidades servicio interno:
 
-Actualización de stock.
 Envío de correo electrónico al registrarse.
-Envío de correo electrónico cuando el usuario olvida su contraseña.
+Envío de correo electrónico al modificar datos privados
 Envío de correo electrónico con la información de la compra realizada.
 
 <div align="center">
@@ -75,3 +74,18 @@ Envío de correo electrónico con la información de la compra realizada.
   ![image](https://user-images.githubusercontent.com/58294628/221549188-7485bb4a-efbe-4d31-802b-8ef949701cc7.png)
 #### Diagrama Entidad/Relación con Atributos
 ![image](https://user-images.githubusercontent.com/58294628/221549220-1b85aba0-1da8-4bf5-a3f2-6fac197bc7e7.png)
+
+<div align="center">
+<h1>FASE 3</h1>
+</div>
+<hr class="divider" />
+
+### Navegacion
+
+Los diagramas de navegación se han mantenido desde la fase anterior
+
+### Diagrama de clases de la aplicación
+
+### Documentación de la interfaz del servicio interno.
+
+### Instrucciones para desplegar la aplicación

@@ -29,9 +29,8 @@ Entidades:
 
 Funcionalidades servicio interno:
 
-Actualización de stock.
 Envío de correo electrónico al registrarse.
-Envío de correo electrónico cuando el usuario olvida su contraseña.
+Envío de correo electrónico al modificar datos privados
 Envío de correo electrónico con la información de la compra realizada.
 
 <div align="center">
@@ -75,3 +74,28 @@ Envío de correo electrónico con la información de la compra realizada.
   ![image](https://user-images.githubusercontent.com/58294628/221549188-7485bb4a-efbe-4d31-802b-8ef949701cc7.png)
 #### Diagrama Entidad/Relación con Atributos
 ![image](https://user-images.githubusercontent.com/58294628/221549220-1b85aba0-1da8-4bf5-a3f2-6fac197bc7e7.png)
+
+<div align="center">
+<h1>FASE 3</h1>
+</div>
+<hr class="divider" />
+
+### Navegacion
+
+Los diagramas de navegación se han mantenido desde la fase anterior
+
+### Diagrama de clases de la aplicación
+
+![image](https://user-images.githubusercontent.com/58294628/228015065-c8e91f78-9b70-4d4f-966b-8229fa816c7b.png)
+
+  
+### Documentación de la interfaz del servicio interno.
+
+El servicio interno utiliza RabbitMq para crear una cola de mensajes y comunicarse con la página web, de esta forma, se obtienen los mensajes que tiene que mandar con todos los datos necesarios (email, asunto y el cuerpo del mensaje).
+Para el envío de mensajes se han utilizado los recursos proporcionados por Spring Email.
+  
+### Instrucciones para desplegar la aplicación
+
+Utilizando el entorno de desarrollo de eclipse, se ha realizado la compilación de los dos proyectos en archivos "jar", consiguiendo así un "jar" para desplegar la página web Massive Gaming y otro "jar" para desplegar el servicio interno de la página.
+Una vez creada la máquina virtual en oracle, utilizando el escritorio Ubuntu proporcionado por MyApps, se han subido los archivos mencionados anteriormente mediante la terminal. Además de ello, ha sido necesario instalar mySql y RabbitMQ debido a que el proyecto los utiliza.
+Por último, ejecutando ambos archivos jar se consigue poner en correcto funcionamiento el servicio creado.

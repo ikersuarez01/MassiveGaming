@@ -88,6 +88,9 @@ Los diagramas de navegación se han mantenido desde la fase anterior
 
 ### Documentación de la interfaz del servicio interno.
 
+El servicio interno utiliza RabbitMq para crear una cola de mensajes y comunicarse con la página web, de esta forma, se obtienen los mensajes que tiene que mandar con todos los datos necesarios (email, asunto y el cuerpo del mensaje).
+Para el envío de mensajes se han utilizado los recursos proporcionados por Spring Email.
+  
 ### Instrucciones para desplegar la aplicación
 
 Utilizando el entorno de desarrollo de eclipse, se ha realizado la compilación de los dos proyectos en archivos "jar", consiguiendo así un "jar" para desplegar la página web Massive Gaming y otro "jar" para desplegar el servicio interno de la página.

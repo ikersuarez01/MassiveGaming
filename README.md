@@ -89,3 +89,7 @@ Los diagramas de navegación se han mantenido desde la fase anterior
 ### Documentación de la interfaz del servicio interno.
 
 ### Instrucciones para desplegar la aplicación
+
+Utilizando el entorno de desarrollo de eclipse, se ha realizado la compilación de los dos proyectos en archivos "jar", consiguiendo así un "jar" para desplegar la página web Massive Gaming y otro "jar" para desplegar el servicio interno de la página.
+Una vez creada la máquina virtual en oracle, utilizando el escritorio Ubuntu proporcionado por MyApps, se han subido los archivos mencionados anteriormente mediante la terminal. Además de ello, ha sido necesario instalar mySql y RabbitMQ debido a que el proyecto los utiliza.
+Por último, ejecutando ambos archivos jar se consigue poner en correcto funcionamiento el servicio creado.

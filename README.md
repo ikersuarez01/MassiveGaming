@@ -86,6 +86,9 @@ Los diagramas de navegación se han mantenido desde la fase anterior
 
 ### Diagrama de clases de la aplicación
 
+![image](https://user-images.githubusercontent.com/58294628/228015065-c8e91f78-9b70-4d4f-966b-8229fa816c7b.png)
+
+  
 ### Documentación de la interfaz del servicio interno.
 
 El servicio interno utiliza RabbitMq para crear una cola de mensajes y comunicarse con la página web, de esta forma, se obtienen los mensajes que tiene que mandar con todos los datos necesarios (email, asunto y el cuerpo del mensaje).

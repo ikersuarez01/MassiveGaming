@@ -97,16 +97,38 @@ Para el envío de mensajes se han utilizado los recursos proporcionados por Spri
 ### Instrucciones para desplegar la aplicación
 
 Utilizando el entorno de desarrollo de eclipse, se ha realizado la compilación de los dos proyectos en archivos "jar", consiguiendo así un "jar" para desplegar la página web Massive Gaming y otro "jar" para desplegar el servicio interno de la página.
-Una vez creada la máquina virtual en oracle, utilizando el escritorio Ubuntu proporcionado por MyApps, se han subido los archivos mencionados anteriormente mediante la terminal. Además de ello, ha sido necesario instalar mySql y RabbitMQ debido a que el proyecto los utiliza.
-Por último, ejecutando ambos archivos jar se consigue poner en correcto funcionamiento el servicio creado.
+```
+Project >> Run As >> Maven Install
+```
+Una vez creada la máquina virtual en oracle, necesitamos crear un par de claves privada-publica que nos permita conectarnos a la máquina. La clave privada que se genera la tenemos que agregar a una carpeta .ssh. El comando para realizar la conexión a la maquina virtual es el siguiente:
+```
+ssh -i /.ssh/MassiveGaming.pem ubuntu@10.100.139.2
+```
+Para subir los archivos jar mediante la terminal se utiliza el siguiente comando:
+```
+scp -i ~/.ssh/MassiveGaming.pem nombreDelArchivoJar.jar ubuntu@10.100.139.2:/home/ubuntu
+```
+Para ejecutar los archivos jar se necesita instalar el jdk:
+```
+sudo apt install default-jdk
+```
+Y para ejecutarlos se utiliza el siguiente comando:
+```
+java -jar nombreDelArchivoJar.jar
+```
 
-Instalaciión mySql:
+Sin embargo, ya que nuestra aplicación tiene implementado un servicio interno y una base de datos, ha sido necesario instalar mySql y RabbitMQ.
+
+Instalación y configuración de mySql :
+```
 sudo apt install mysql-server
 sudo mysql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Tapatapita123';
 exit
-
-Instalación RabbitMQ:
+sudo mysql_secure_instalation
+```
+Instalación de RabbitMQ:
+```
 sudo apt-get install curl gnupg apt-transport-https -y
 curl -1sLf "https://keys.openpgp.org/vks/v1/by-fingerprint/0A9AF2115F4687BD29803A206B73A36E6026DFCA" | sudo gpg --dearmor | sudo tee /usr/share/keyrings/com.rabbitmq.team.gpg > /dev/null
 curl -1sLf "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf77f1eda57ebb1cc" | sudo gpg --dearmor | sudo tee /usr/share/keyrings/net.launchpad.ppa.rabbitmq.erlang.gpg > /dev/null
@@ -125,5 +147,5 @@ sudo apt-get install -y erlang-base \
                         erlang-runtime-tools erlang-snmp erlang-ssl \
                         erlang-syntax-tools erlang-tftp erlang-tools erlang-xmerl
 sudo apt-get install rabbitmq-server -y --fix-missing
-
+```
 

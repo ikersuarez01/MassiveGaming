@@ -28,6 +28,6 @@ public class MassiveGamingApplication {
 	@Bean
 	public CacheManager cacheManager() {
 		LOG.info("Activating cache...");
-    	return new ConcurrentMapCacheManager("anuncios");
+    	return new ConcurrentMapCacheManager("videojuegos");
 	}
 }

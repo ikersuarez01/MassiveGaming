@@ -9,23 +9,17 @@ services:
     build: MassiveGaming/.
     expose: 
       - "8443"
-    ports:
-      - "8442-8443:8443"
     restart: unless-stopped
     environment:
       - SPRING_RABBITMQ_HOST=broker
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/db_MassiveGaming
     deploy:
-      mode: replicated
+      mode: loadbalancer
       replicas: 2
   broker:
     image: rabbitmq
   rabbitmq:
     build: InternalService/.
-    expose:
-      - "8080"
-    ports:
-      - "15672-15673:8080"
     environment:
       - SPRING_RABBITMQ_HOST=broker
     deploy:
@@ -36,9 +30,6 @@ services:
     ports:
       - "9443:443" # Only service that is exposed to the host is the lb
       - "8181:8181" # Haproxy Stats
-      - "80:80" # http (should not work)
-      - "9091:8080"
-      - "5672:5672"
     volumes:
       - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
     restart: unless-stopped

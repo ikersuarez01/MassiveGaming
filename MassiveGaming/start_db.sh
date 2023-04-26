@@ -1,0 +1,1 @@
+docker run --rm -e MYSQL_ROOT_PASSWORD=Tapatapita123 -e MYSQL_DATABASE=db_MassiveGaming -p 3306:3306 -d mysql:8.0

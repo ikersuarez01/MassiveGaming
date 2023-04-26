@@ -58,7 +58,7 @@ public class ProductosController{
             model.addAttribute("mostrarPerfil",false);
         }
     }
-	
+
 	@GetMapping("/videojuegos")
 	public String videojuegos(Model model) {
 		

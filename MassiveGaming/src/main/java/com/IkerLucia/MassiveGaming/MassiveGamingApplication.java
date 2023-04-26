@@ -1,22 +1,23 @@
 package com.IkerLucia.MassiveGaming;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.amqp.core.Queue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-<<<<<<< Updated upstream
-=======
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
->>>>>>> Stashed changes
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
 @EnableCaching
 public class MassiveGamingApplication {
+	
+
+	private static final Log LOG = LogFactory.getLog(MassiveGamingApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(MassiveGamingApplication.class, args);
@@ -26,13 +27,10 @@ public class MassiveGamingApplication {
 	public Queue myQueue() {
     	return new Queue("mensajes", false);
 	}
-<<<<<<< Updated upstream
-=======
 	
 	@Bean
 	public CacheManager cacheManager() {
 		LOG.info("Activating cache...");
     	return new ConcurrentMapCacheManager("videojuegos", "consolas");
 	}
->>>>>>> Stashed changes
 }

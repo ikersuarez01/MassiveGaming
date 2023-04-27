@@ -18,7 +18,7 @@ services:
       replicas: 2
   broker:
     image: rabbitmq
-  rabbitmq:
+  internalservice:
     build: InternalService/.
     environment:
       - SPRING_RABBITMQ_HOST=broker

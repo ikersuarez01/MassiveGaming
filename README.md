@@ -11,6 +11,7 @@
 
 https://youtu.be/x83EA_9kFCM
   
+  <div align="center">
 <h1>FASE 1</h1>
 </div>
 <hr class="divider" />

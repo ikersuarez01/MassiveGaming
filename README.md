@@ -148,4 +148,15 @@ sudo apt-get install -y erlang-base \
                         erlang-syntax-tools erlang-tftp erlang-tools erlang-xmerl
 sudo apt-get install rabbitmq-server -y --fix-missing
 ```
+<div align="center">
+<h1>FASE 4</h1>
+</div>
+<hr class="divider" />
 
+### Diagrama de clases de la aplicación actualizado
+![image](https://user-images.githubusercontent.com/58294628/235978931-9d0df667-9cf8-422a-ad32-813d932b54e4.png)
+
+### Diagrama de infraestructura con los contenedores y sus comunicaciones
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/58294628/235983413-ebaff400-087c-4160-bc77-8872a7d9a1d7.png"/>
+</div>

@@ -158,5 +158,5 @@ sudo apt-get install rabbitmq-server -y --fix-missing
 
 ### Diagrama de infraestructura con los contenedores y sus comunicaciones
 <div align="center">
-![image](https://user-images.githubusercontent.com/58294628/235983413-ebaff400-087c-4160-bc77-8872a7d9a1d7.png)
+  <img src="https://user-images.githubusercontent.com/58294628/235983413-ebaff400-087c-4160-bc77-8872a7d9a1d7.png"/>
 </div>
